@@ -1,0 +1,2281 @@
+% !TeX root = ../main.tex
+
+\part{Prof. Astolfi}
+
+\section{Introduction to Neuroengineering}
+
+\subsection{Why a Neuroengineering Course?}
+
+Neuroengineering studies the nervous system using concepts, tools, and models from engineering. The human brain can be seen as a complex learning system able to process a very large flow of information and transform it into actions at a temporal scale of milliseconds.
+
+The brain has inspired many engineering solutions, including artificial intelligence, robotics, control systems, neural prostheses, and brain-computer interfaces. At the same time, engineering provides tools to study and model brain activity, interpret neural signals, and develop clinical or assistive technologies.
+
+\begin{authornote}
+The key idea of this part of the course is that the relationship between neuroscience and engineering is bidirectional. Neuroscience inspires engineering models, such as artificial neural networks, while engineering provides methods to understand, measure, and interact with the nervous system.
+\end{authornote}
+
+\subsection{Physiologically Inspired Devices}
+
+One historical example of a physiologically inspired device is the perceptron, invented in 1958 by Frank Rosenblatt. The perceptron was designed according to biological principles and was able to learn, making it one of the early precursors of artificial intelligence.
+
+Another example is social robotics, which studies robots able to interact and communicate with humans, other robots, and the environment according to social rules and roles.
+
+\begin{authornote}
+The perceptron is important not because it is biologically realistic in every detail, but because it shows how a simplified idea inspired by neurons can become an engineering model for learning and classification.
+\end{authornote}
+
+\subsection{Control Theory, Robotics, AI, and Neuroscience}
+
+Control theory is useful in neuroscience because the brain can be interpreted as a complex control system. It receives inputs, processes information, and produces outputs such as motor actions, cognitive responses, and behavioral decisions.
+
+In this view:
+
+\begin{itemize}[noitemsep]
+    \item sensory information acts as input;
+    \item the brain and central nervous system act as controller;
+    \item muscles and body dynamics act as plant;
+    \item motor commands act as output.
+\end{itemize}
+
+Robotics and neural prostheses use control algorithms to interpret neural signals and produce appropriate actions. Brain-computer interfaces, BCIs, use control engineering principles to translate neural activity into commands for external devices.
+
+Artificial intelligence also plays a central role in neuroscience. It can help analyze large and complex neural datasets, identify patterns in brain data, improve brain imaging interpretation, support hypothesis testing, and contribute to personalized medicine and neuroprosthetics.
+
+\begin{authornote}
+For an AI and Robotics student, this is the conceptual bridge: the nervous system is not only a biological object, but also an information-processing and control system. This makes it natural to study it using signal processing, control, machine learning, and network models.
+\end{authornote}
+
+\subsection{Main Topics of Astolfi's Module}
+
+The module includes the following main topics:
+
+\begin{enumerate}[noitemsep]
+    \item physiology of the neuron: generation, integration, and propagation of neural electrical signals;
+    \item principles of neuroanatomy and brain organization;
+    \item mechanisms of generation of neural electrical correlates;
+    \item neural encoding and decoding;
+    \item basic definitions of network neuroscience, such as synchronicity, causality, and influence;
+    \item brain functional networks at different scales;
+    \item graph theoretical analysis of brain networks;
+    \item multi-subject systems;
+    \item applications to clinical and physiological problems.
+\end{enumerate}
+
+\section{The Neural Cell}
+
+\subsection{Main Functions of the Neuron}
+
+A neuron has three main functions:
+
+\begin{enumerate}[noitemsep]
+    \item collection of information from multiple sources, such as other neurons or receptors;
+    \item integration of incoming information in space and time, producing a binary decision;
+    \item generation and propagation of a bit of information toward target cells, such as other neurons or muscle cells.
+\end{enumerate}
+
+The specialized structure of the neuron supports these functions. Dendrites collect inputs, the soma and axon hillock integrate information, and the axon propagates the output signal toward synaptic terminals.
+
+\begin{authornote}
+A compact way to remember the neuron is: dendrites collect, the axon hillock decides, the axon transmits.
+\end{authornote}
+
+\subsection{The Neuronal Membrane}
+
+The neuronal membrane is the main morphologically specialized structure that allows neurons to produce electrical signals. It is a phospholipid bilayer with hydrophilic heads and hydrophobic tails. The membrane is selectively permeable to ions and contains membrane proteins such as ion channels and receptors.
+
+The main ion families involved in neuronal electrical behavior are:
+
+\begin{itemize}[noitemsep]
+    \item sodium, $Na^+$;
+    \item potassium, $K^+$;
+    \item chloride, $Cl^-$;
+    \item calcium, $Ca^{2+}$.
+\end{itemize}
+
+Ion channels allow passive transport driven by electrochemical forces. Ion pumps allow active transport against electrochemical gradients and require energy expenditure by the cell.
+
+\begin{authornote}
+The membrane is not just a passive boundary. It is an active computational interface: by controlling which ions can cross and when, the neuron changes its electrical state.
+\end{authornote}
+
+\subsection{Electrochemical Equilibrium}
+
+Ion movement across the neuronal membrane is driven by two types of forces:
+
+\begin{itemize}[noitemsep]
+    \item diffusional forces, due to concentration gradients;
+    \item electrical forces, due to voltage differences across the membrane.
+\end{itemize}
+
+The balance between these two forces determines the electrochemical equilibrium. For a given ion family, the electrochemical potential difference can be written as:
+
+\[
+\Delta \mu =
+RT \ln \left( \frac{[X]_A}{[X]_B} \right)
++
+zF(E_A - E_B),
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $[X]_A$ and $[X]_B$ are the ion concentrations on the two sides of the membrane;
+    \item $R$ is the universal gas constant;
+    \item $T$ is the temperature in Kelvin;
+    \item $F$ is the Faraday constant;
+    \item $z$ is the ion valence;
+    \item $E_A - E_B$ is the membrane potential difference.
+\end{itemize}
+
+At electrochemical equilibrium, $\Delta \mu = 0$.
+
+\subsection{Nernst Equation}
+
+The Nernst equation gives the equilibrium potential for a specific ion family $j$:
+
+\[
+E_j =
+\frac{RT}{Fz_j}
+\ln
+\left(
+\frac{[extra]_j}{[intra]_j}
+\right),
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $[extra]_j$ is the extracellular concentration of ion $j$;
+    \item $[intra]_j$ is the intracellular concentration of ion $j$;
+    \item $z_j$ is the valence of ion $j$.
+\end{itemize}
+
+The equilibrium potential $E_j$ is the membrane voltage at which diffusional and electrical forces balance for ion $j$. If the membrane is freely permeable to that ion, the net current tends to move the membrane potential toward $E_j$.
+
+Typical equilibrium potentials are:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Ion} & \textbf{Typical equilibrium potential} \\
+\midrule
+$K^+$ & $E_K \approx -90\,\text{mV}$ \\
+$Na^+$ & $E_{Na} \approx +50\,\text{mV}$ \\
+$Ca^{2+}$ & $E_{Ca} \approx +150\,\text{mV}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{authornote}
+The Nernst equation does not describe the full membrane potential by itself. It gives the equilibrium voltage for one ion species. The actual resting membrane potential depends on the combined effect of several ions, their permeability, and ion pumps.
+\end{authornote}
+
+\subsection{Resting Membrane Potential}
+
+The membrane potential is the difference in electrical potential between the inside of the neuron and the extracellular fluid. It is caused by different ion concentrations on the two sides of the membrane.
+
+At rest, the neuronal membrane potential is approximately:
+
+\[
+V_{\text{rest}} \approx -70\,\text{mV}.
+\]
+
+This means that the inside of the neuron is more negative than the outside. The membrane is therefore said to be polarized.
+
+The resting membrane potential depends on:
+
+\begin{enumerate}[noitemsep]
+    \item diffusional forces;
+    \item electrical forces;
+    \item ion pumps.
+\end{enumerate}
+
+The most important ion pump is the sodium-potassium pump, which moves ions against their electrochemical gradients using energy.
+
+\subsection{Depolarization, Repolarization, and Hyperpolarization}
+
+A membrane depolarization occurs when the membrane potential becomes less negative or even positive. This can happen when positive ions enter the cell or negative ions leave the cell.
+
+A membrane hyperpolarization occurs when the membrane potential becomes more negative than the resting value. This can happen when positive ions leave the cell or negative ions enter the cell.
+
+Repolarization is the return of the membrane potential toward the resting value after a depolarization.
+
+\begin{authornote}
+For exam purposes, it is useful to associate the direction of voltage change with the functional effect: depolarization brings the neuron closer to firing an action potential; hyperpolarization usually makes firing less likely.
+\end{authornote}
+
+\subsection{Dendritic Tree and Synapses}
+
+The dendritic tree collects information from other neural cells or receptors through synaptic connections. A single neuron may receive from thousands up to hundreds of thousands of inputs.
+
+There are two main types of synapses:
+
+\begin{itemize}[noitemsep]
+    \item electrical synapses;
+    \item chemical synapses.
+\end{itemize}
+
+Electrical synapses allow direct electrical transmission between cells.
+
+Chemical synapses use neurotransmitters. The presynaptic neuron releases a chemical signal into the synaptic cleft; this neurotransmitter binds to receptors on the postsynaptic membrane and causes the opening of specific ion-gated channels.
+
+\subsection{Excitatory and Inhibitory Synapses}
+
+A postsynaptic potential can be excitatory or inhibitory.
+
+An excitatory postsynaptic potential, EPSP, causes depolarization:
+
+\[
+\text{EPSP} \rightarrow \text{depolarization}.
+\]
+
+An inhibitory postsynaptic potential, IPSP, causes hyperpolarization:
+
+\[
+\text{IPSP} \rightarrow \text{hyperpolarization}.
+\]
+
+Excitatory and inhibitory are defined with respect to the probability of generating a neuronal response. An EPSP makes the neuron more likely to fire an action potential, while an IPSP makes it less likely.
+
+\begin{authornote}
+Excitatory does not mean ``good'' and inhibitory does not mean ``bad''. They simply describe whether the postsynaptic effect increases or decreases the probability of firing.
+\end{authornote}
+
+\subsection{Temporal and Spatial Summation}
+
+The neuron integrates incoming information by summing EPSPs and IPSPs with their sign.
+
+There are two main forms of summation:
+
+\begin{itemize}[noitemsep]
+    \item temporal summation: multiple postsynaptic potentials arrive close together in time from the same or similar input;
+    \item spatial summation: postsynaptic potentials arrive from different synaptic locations on the neuron.
+\end{itemize}
+
+Temporal and spatial summation can occur simultaneously. The final membrane depolarization or hyperpolarization is propagated toward the axon hillock. If the resulting membrane potential reaches threshold, the neuron fires an action potential.
+
+\subsection{Propagation of Postsynaptic Potentials}
+
+Postsynaptic potentials propagate passively along the membrane. A local depolarization or hyperpolarization causes intra- and extracellular ionic currents that spread to adjacent membrane regions.
+
+However, this propagation is:
+
+\begin{itemize}[noitemsep]
+    \item inefficient;
+    \item non-directional;
+    \item decreasing with distance;
+    \item prevalent in dendrites.
+\end{itemize}
+
+\begin{authornote}
+Postsynaptic potentials are analog and graded: their amplitude can vary, and they decay with distance. This is different from the action potential, which is all-or-none and actively propagated.
+\end{authornote}
+
+\subsection{Action Potential}
+
+The action potential is a rapid variation of the membrane potential that appears in neural, muscular, and cardiac cells. In neurons, it represents the binary output decision of the cell.
+
+It is an all-or-none process:
+
+\begin{itemize}[noitemsep]
+    \item if the stimulus does not reach threshold, no action potential occurs;
+    \item if threshold is reached, the action potential has the same shape, duration, and amplitude, independently of the stimulus amplitude.
+\end{itemize}
+
+Typical properties of an action potential are:
+
+\begin{itemize}[noitemsep]
+    \item duration: approximately $2\,\text{ms}$;
+    \item amplitude: approximately $100\,\text{mV}$;
+    \item spike-like waveform.
+\end{itemize}
+
+The information is not encoded in the shape of the action potential, but in the temporal distance between spikes, that is, in the spike train.
+
+\subsection{Voltage-Gated Sodium and Potassium Channels}
+
+The action potential depends mainly on voltage-gated $Na^+$ and $K^+$ channels.
+
+For $Na^+$ channels:
+
+\begin{itemize}[noitemsep]
+    \item at resting potential, around $-70\,\text{mV}$, the channel is closed but can be opened;
+    \item at the opening threshold, around $-60\,\text{mV}$, the channel opens and $Na^+$ enters the cell;
+    \item near $+30\,\text{mV}$, the channel becomes inactivated and cannot be opened;
+    \item when the membrane returns toward rest, the channel becomes closed again.
+\end{itemize}
+
+For $K^+$ channels:
+
+\begin{itemize}[noitemsep]
+    \item at rest, they are closed;
+    \item near the positive peak of the action potential, they open;
+    \item $K^+$ flows out of the cell, contributing to repolarization;
+    \item they close when the membrane becomes sufficiently negative again.
+\end{itemize}
+
+\subsection{Phases of the Action Potential}
+
+The sequence of events is:
+
+\begin{enumerate}[noitemsep]
+    \item depolarization reaches the $Na^+$ opening threshold, around $-60\,\text{mV}$;
+    \item fast depolarization occurs because $Na^+$ flows into the cell;
+    \item $Na^+$ channels inactivate and $K^+$ channels open near the positive peak;
+    \item repolarization occurs because $K^+$ flows out of the cell;
+    \item undershoot or hyperpolarization occurs until $K^+$ channels close;
+    \item the membrane returns to resting potential, with the help of ion pumps.
+\end{enumerate}
+
+\subsection{Absolute and Relative Refractory Periods}
+
+The absolute refractory period is caused by the inactivation of voltage-gated $Na^+$ channels. During this period, no new action potential can be generated under any circumstances.
+
+The relative refractory period is mainly related to $K^+$ channel dynamics and hyperpolarization. During this period, a new action potential can occur, but it requires a stronger depolarization.
+
+\begin{authornote}
+The refractory periods are essential because they limit the firing rate of the neuron and help make action potential propagation unidirectional.
+\end{authornote}
+
+\subsection{Propagation of the Action Potential}
+
+There are two main mechanisms of action potential propagation:
+
+\begin{itemize}[noitemsep]
+    \item continuous conduction;
+    \item saltatory conduction.
+\end{itemize}
+
+In continuous conduction, the action potential is regenerated along adjacent membrane regions. The absolute refractory period prevents the signal from propagating backward, producing unidirectional propagation. The propagation speed is relatively low, around $1\,\text{m/s}$, and is limited by the activation of $Na^+$ and $K^+$ channels.
+
+In saltatory conduction, the axon is myelinated and the action potential is generated only at the nodes of Ranvier. Along myelinated segments, propagation is passive. The signal appears to ``jump'' from one node to the next, making saltatory conduction much faster than continuous conduction.
+
+\begin{authornote}
+The myelin sheath acts like electrical insulation. It prevents current leakage along the covered axon segments and allows the signal to travel quickly between nodes of Ranvier.
+\end{authornote}
+
+\section{Principles of Neuroanatomy and Brain Organization}
+
+\subsection{Studying the Human Brain}
+
+The brain can be studied through several approaches, including lesion studies, animal studies, neuroimaging, neuromodulation, behavioral data, and clinical data.
+
+A central idea is that the brain predicts the future on the basis of the past, helping the individual survive and adapt.
+
+Brain functioning occurs at different scales:
+
+\begin{itemize}[noitemsep]
+    \item temporal scale: milliseconds;
+    \item spatial scale: from nanometers and micrometers to millimeters and centimeters.
+\end{itemize}
+
+Brain evolution occurs both collectively, across species and generations, and individually, because the brain remains plastic during the lifespan.
+
+\subsection{Grey Matter, White Matter, and Cortex}
+
+Grey matter mainly contains neuronal cell bodies and dendrites. White matter mainly contains myelinated axons, which form fiber pathways connecting different brain regions.
+
+White matter tractography is an in vivo procedure based on diffusion tensor imaging, DTI, used to reconstruct white matter pathways.
+
+The corpus callosum is a major white matter structure connecting the two hemispheres and allowing information exchange between them.
+
+The brain cortex is highly folded to increase cortical surface within a limited volume. The folds are called gyri, while the grooves are called sulci. A large part of the cortical surface lies inside the sulci.
+
+\subsection{Cortical Organization}
+
+The cerebral cortex is organized into six vertical layers, which are strongly interconnected. Cortical neurons are also organized in columns, approximately $0.5\,\text{mm}$ in diameter, perpendicular to the cortical surface.
+
+Neurons within the same column tend to show similar responses to the same stimulus.
+
+\begin{authornote}
+A useful hierarchy is: neurons form layers and columns; columns form areas; areas interact in circuits and networks.
+\end{authornote}
+
+\subsection{Types of Neural Connections}
+
+Neural connections can be classified as:
+
+\begin{itemize}[noitemsep]
+    \item feedforward or bottom-up connections: from early processing stages to later ones;
+    \item lateral connections: between regions at the same processing level;
+    \item feedback or top-down connections: from advanced processing stages back to earlier ones.
+\end{itemize}
+
+Most connections are lateral. All these connection types can be excitatory or inhibitory.
+
+\subsection{Anatomical Orientation Terms}
+
+Some common orientation terms are:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Term} & \textbf{Meaning} \\
+\midrule
+Anterior & In front of \\
+Posterior & Behind \\
+Superior & Above \\
+Inferior & Below \\
+Rostral & Toward the front of the brain \\
+Caudal & Toward the back of the brain \\
+Ventral & Toward the belly \\
+Dorsal & Toward the back \\
+Medial & Toward the midline \\
+Lateral & Away from the midline \\
+Ipsilateral & On the same side \\
+Contralateral & On the opposite side \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Brain Lobes and Main Functions}
+
+\begin{center}
+\begin{tabular}{p{3cm}p{10cm}}
+\toprule
+\textbf{Lobe} & \textbf{Main functions} \\
+\midrule
+Frontal & Executive functions, reasoning, decision-making, expressive language, high-level cognition, orientation, planning and execution of movement. \\
+Parietal & Primary and secondary somatosensory cortex, spatial navigation, touch, pressure, temperature, and pain. \\
+Occipital & Primary visual cortex and visual information processing. \\
+Temporal & Auditory cortex, receptive language, memory formation, and emotion through structures such as the hippocampus. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Brodmann Areas}
+
+Brodmann areas were first described by Korbinian Brodmann in 1909. They are based on cytoarchitecture, meaning the type and organization of neural cells. Later, they were associated with specific functions.
+
+A single function may involve multiple areas. For example, Brodmann areas 3, 1, and 2 all contribute to the sensory cortex.
+
+\subsection{Feature Maps}
+
+Some brain regions are organized as feature maps.
+
+In the visual cortex, there is retinotopic organization: the visual image from the retina is transformed and mapped onto the primary visual cortex, V1. Specialized neuronal populations process features such as shape, motion, and contrast.
+
+In the motor and somatosensory cortex, there is somatotopic organization. The motor control area is located in the precentral gyrus of the frontal lobe, corresponding to Brodmann area 4. Somatosensory areas are located in the postcentral gyrus of the parietal lobe, corresponding mainly to Brodmann areas 3, 1, and 2.
+
+The Penfield homunculus represents the somatotopic organization of motor and somatosensory cortices.
+
+\subsection{Subcortical Areas}
+
+Main subcortical areas include:
+
+\begin{itemize}[noitemsep]
+    \item thalamus;
+    \item brainstem;
+    \item basal ganglia;
+    \item cerebellum.
+\end{itemize}
+
+The thalamus controls traffic from the periphery to the cortex, especially sensory afferent information. Subcortical areas are more difficult to reach and measure, especially using non-invasive methods.
+
+\subsection{Brain Organization at Different Levels}
+
+Brain organization can be studied at multiple spatial scales:
+
+\begin{itemize}[noitemsep]
+    \item cortical layers;
+    \item cortical columns;
+    \item Brodmann areas and cortical regions;
+    \item brain circuits and networks.
+\end{itemize}
+
+These levels span different spatial scales, from micrometers to centimeters.
+
+\subsection{Brain Plasticity}
+
+Brain plasticity is the capacity of the nervous system to change its structure and function. Plasticity is maximal during the critical period, approximately from birth to two years of age, when brain reorganization can produce irreversible changes.
+
+However, plasticity is also present in adults and elderly people. Evidence of adult plasticity includes:
+
+\begin{itemize}[noitemsep]
+    \item learning;
+    \item memory;
+    \item effects of sensory deprivation;
+    \item reorganization after brain lesions;
+    \item effectiveness of neurorehabilitation.
+\end{itemize}
+
+A key principle is Hebbian learning: cells or systems of cells that are repeatedly active together tend to become associated, so that activity in one facilitates activity in the other.
+
+\begin{authornote}
+The informal version of Hebbian learning is: neurons that fire together wire together. This does not describe all plasticity mechanisms, but it is a very useful intuition.
+\end{authornote}
+
+\subsection{Main Mechanisms of Brain Plasticity}
+
+The main neuronal mechanisms behind plasticity are:
+
+\begin{enumerate}[noitemsep]
+    \item synaptic plasticity;
+    \item axonal sprouting or pruning;
+    \item axonal regeneration;
+    \item unmasking of latent synaptic connections.
+\end{enumerate}
+
+Synaptic plasticity modifies the strength of existing synapses. These changes may occur over hours or weeks and can involve variations in neurotransmitter release or receptor availability.
+
+Axonal sprouting creates new collateral branches to fill vacant synaptic sites, for example after the loss of an axon. Pruning removes unnecessary connections.
+
+Axonal regeneration is typical of early life stages and is less common in adults.
+
+Unmasking of latent synaptic connections refers to the use of redundant synapses that already exist but are not normally active until they are needed, for example after a lesion.
+
+\begin{authornote}
+Plasticity is the biological basis for learning, adaptation, and neurorehabilitation. However, it is not always positive: maladaptive plasticity can also contribute to pathological conditions.
+\end{authornote}
+
+\section{Neural Encoding and Poisson Spike Generation}
+
+\subsection{Neural Encoding and Neural Decoding}
+
+Neural encoding and decoding study the relationship between a stimulus feature and the action potentials generated by a neuron in response to that stimulus.
+
+A stimulus may be external, such as light intensity, sound intensity, orientation, or movement direction, or internal, such as the direction of a planned movement.
+
+In neural encoding, the direction of the problem is:
+
+\[
+\text{stimulus} \longrightarrow \text{neural response}.
+\]
+
+The aim is to describe how neurons react to different stimuli and to predict their response to a new stimulus:
+
+\[
+\text{neural response} = f(\text{stimulus}).
+\]
+
+In neural decoding, the direction is reversed:
+
+\[
+\text{neural response} \longrightarrow \text{stimulus}.
+\]
+
+The aim is to infer which stimulus, or which stimulus property, produced a given spike train:
+
+\[
+\text{stimulus} = f^{-1}(\text{neural response}).
+\]
+
+\begin{authornote}
+Encoding asks: ``given the stimulus, what does the neuron do?'' Decoding asks: ``given what the neuron did, what stimulus was likely present?'' This distinction is very important for BCIs, because a BCI usually receives neural activity and must infer the user's intention.
+\end{authornote}
+
+\subsection{Rate-Coding Hypothesis}
+
+The rate-coding hypothesis states that the frequency of action potentials, or firing rate, is a fundamental mechanism used by neurons to encode information.
+
+A classical example is the relation between pressure applied to a cat's footpad and the number of action potentials generated by cutaneous nerve fibers. Higher pressure produces a higher number of spikes.
+
+\begin{authornote}
+Rate coding does not mean that spike timing is irrelevant in all contexts. It means that, in this simplified model, the relevant information is summarized by the number of spikes per unit time, rather than by the exact timing of every spike.
+\end{authornote}
+
+\subsection{Spike Train as a Neural Response Function}
+
+A spike train can be represented mathematically as a sum of Dirac delta functions. If a neuron emits $n$ spikes during a trial of duration $T$, and the $i$-th spike occurs at time $t_i$, then the neural response function is:
+
+\[
+\rho(t) =
+\sum_{i=1}^{n}
+\delta(t - t_i),
+\qquad
+0 \leq t_i \leq T.
+\]
+
+Each spike is represented as an ideal instantaneous event.
+
+\subsection{Spike-Count Firing Rate}
+
+The spike-count firing rate is the time average of the neural response function over the duration of the trial:
+
+\[
+r =
+\frac{n}{T}
+=
+\frac{1}{T}
+\int_{0}^{T}
+\rho(\tau)\,d\tau.
+\]
+
+Since:
+
+\[
+\int_{0}^{T}
+\rho(\tau)\,d\tau
+=
+n,
+\]
+
+the firing rate is simply the number of spikes divided by the trial duration. Its unit is Hz.
+
+For example, if a neuron fires $6$ spikes in $1$ second:
+
+\[
+r = \frac{6}{1} = 6\,\text{Hz}.
+\]
+
+\begin{authornote}
+The spike-count firing rate is meaningful when the stimulus is stationary during the trial. If the stimulus changes over time, a single number $r=n/T$ may be too crude, and a time-resolved firing rate is needed.
+\end{authornote}
+
+\subsection{Variability Across Trials}
+
+Even if the same stimulus is presented multiple times, neural responses may vary across trials. For example, the same stimulus may produce firing rates such as:
+
+\[
+r_1 = 6\,\text{Hz},
+\qquad
+r_2 = 4\,\text{Hz},
+\qquad
+r_3 = 5\,\text{Hz}.
+\]
+
+For this reason, neural responses are often described probabilistically, using an average firing rate across trials:
+
+\[
+\langle r \rangle.
+\]
+
+\begin{authornote}
+This is one of the reasons neuroscience often uses probability. Neurons are not deterministic machines at the level of single trials. The same stimulus can produce slightly different spike trains.
+\end{authornote}
+
+\subsection{Tuning Curves}
+
+A stimulus usually has many properties, such as orientation, contrast, shape, movement direction, or disparity. In a tuning curve experiment, one property $s$ is selected and varied, while the neural response is measured.
+
+The tuning curve describes how the average firing rate changes as a function of the stimulus property:
+
+\[
+r = f(s).
+\]
+
+The general experimental procedure is:
+
+\begin{enumerate}[noitemsep]
+    \item choose a stimulus property $s$;
+    \item present several values of $s$;
+    \item repeat each condition multiple times;
+    \item compute the average firing rate for each value of $s$;
+    \item plot $\langle r \rangle$ as a function of $s$.
+\end{enumerate}
+
+\subsection{Example: Orientation Tuning in Visual Cortex}
+
+A neuron in the primary visual cortex may respond selectively to the orientation of a visual bar. In this case, the stimulus property is the orientation angle $s$.
+
+A possible tuning curve is Gaussian-shaped:
+
+\[
+f(s)
+=
+r_{\max}
+\exp
+\left[
+-\frac{1}{2}
+\left(
+\frac{s - s_{\max}}{\sigma_f}
+\right)^2
+\right],
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $s_{\max}$ is the angle evoking the maximum response;
+    \item $r_{\max}$ is the maximum firing rate;
+    \item $\sigma_f$ controls the width of the tuning curve.
+\end{itemize}
+
+A narrow tuning curve means that the neuron is highly selective for a specific stimulus value. A broad tuning curve means that the neuron responds to a wider range of values.
+
+\subsection{Example: Direction Tuning in Motor Cortex}
+
+A neuron in the primary motor cortex may be tuned to movement direction. A common model is:
+
+\[
+f(s)
+=
+r_0
++
+(r_{\max} - r_0)
+\cos(s - s_{\max}),
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $s$ is the movement direction;
+    \item $s_{\max}$ is the preferred movement direction;
+    \item $r_{\max}$ is the maximum firing rate;
+    \item $r_0$ is an offset used to avoid negative firing rates.
+\end{itemize}
+
+\begin{authornote}
+In motor cortex, a neuron usually does not encode a full movement by itself. Instead, many neurons with different preferred directions contribute together. This is the idea behind population coding.
+\end{authornote}
+
+\subsection{Example: Disparity Tuning}
+
+Some visual neurons respond to binocular retinal disparity, which is the difference in the retinal position of an image between the two eyes. A possible tuning curve is sigmoidal:
+
+\[
+f(s)
+=
+\frac{r_{\max}}
+{1 + \exp\left(\frac{s_{1/2} - s}{\Delta s}\right)},
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $s$ is binocular retinal disparity;
+    \item $s_{1/2}$ is the disparity producing half of the maximum response;
+    \item $\Delta s$ controls how quickly the firing rate increases with $s$.
+\end{itemize}
+
+\subsection{Poisson Spike Generator}
+
+A Poisson spike generator is a probabilistic model used to simulate spike trains. The main assumption is that spikes occur independently, with a probability determined by the firing rate.
+
+If the firing rate is constant, the number of spikes in a time interval follows a Poisson distribution:
+
+\[
+P(n)
+=
+\frac{(rT)^n}{n!}
+e^{-rT},
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $n$ is the number of spikes;
+    \item $r$ is the firing rate;
+    \item $T$ is the duration of the observation window.
+\end{itemize}
+
+The average number of spikes is:
+
+\[
+\langle n \rangle = rT.
+\]
+
+\begin{authornote}
+The Poisson model is useful because it gives a simple bridge between firing rate and spike variability. If the firing rate increases, higher spike counts become more probable. However, it is only an approximation of real neuronal behavior.
+\end{authornote}
+
+\subsection{Inter-Spike Intervals}
+
+In a Poisson process, the inter-spike interval, ISI, follows an exponential distribution. Long inter-spike intervals have a probability that decreases exponentially with their duration.
+
+\[
+P(\text{ISI} > t)
+=
+e^{-rt}.
+\]
+
+This means that the probability of waiting a long time before the next spike decreases as the firing rate increases.
+
+\subsection{Limitations of the Poisson Generator}
+
+The basic Poisson generator has important limitations:
+
+\begin{itemize}[noitemsep]
+    \item it assumes that each spike is independent from the others;
+    \item it does not account for the absolute and relative refractory periods;
+    \item it allows arbitrarily short inter-spike intervals;
+    \item it may not reproduce the ISI distribution observed in real neurons.
+\end{itemize}
+
+A more realistic spike generator can include constraints on the minimum inter-spike interval, reflecting the refractory period of real neurons.
+
+\begin{authornote}
+The main missing biological detail in a simple Poisson generator is the refractory period. A real neuron cannot fire two spikes arbitrarily close in time, because after an action potential sodium channels are temporarily inactivated.
+\end{authornote}
+
+\section{Neural Decoding}
+
+\subsection{Meaning and Need for Neural Decoding}
+
+Neural decoding is the estimation of the stimulus or mental state that produced a given neuronal output. Formally:
+
+\[
+\text{stimulus} = f^{-1}(\text{neural response}).
+\]
+
+In probabilistic terms, encoding and decoding can be written as conditional probabilities:
+
+\[
+\text{Encoding: } P(r \mid s),
+\]
+
+\[
+\text{Decoding: } P(s \mid r).
+\]
+
+Encoding asks for the probability of a response $r$ given a stimulus property $s$. Decoding asks for the probability of a stimulus property $s$ given that the neural response was $r$.
+
+\begin{authornote}
+Decoding is essential for brain-computer interfaces. The external device does not know the stimulus, intention, or movement plan directly. It only observes neural activity and must infer what it means.
+\end{authornote}
+
+\subsection{Visual Discrimination Example}
+
+In the visual discrimination task described in the slides, a subject is trained to recognize the direction of motion of dots on a screen.
+
+There are two possible movement directions:
+
+\begin{itemize}[noitemsep]
+    \item a direction corresponding to maximum neural response, denoted as $+$;
+    \item a direction corresponding to minimum neural response, denoted as $-$.
+\end{itemize}
+
+A second factor is coherence, defined as the percentage of dots moving in the same direction. Coherence controls the amount of noise in the stimulus:
+
+\begin{itemize}[noitemsep]
+    \item $100\%$ coherence: all dots move coherently;
+    \item $50\%$ coherence: only part of the motion information is coherent;
+    \item $0\%$ coherence: dots move randomly.
+\end{itemize}
+
+\begin{authornote}
+Coherence is a way to manipulate task difficulty. At high coherence, the stimulus is easy to classify. At low coherence, neural responses to the two directions become more overlapping, so decoding becomes harder.
+\end{authornote}
+
+\subsection{Firing Rate Distributions}
+
+For each stimulus condition, the firing rate is not a single deterministic value but a distribution. If the two distributions corresponding to two stimuli are well separated, decoding is easy. If they overlap strongly, decoding is difficult.
+
+The separation between firing rate distributions determines how well a decoder can infer the stimulus.
+
+\subsection{Discriminability Index}
+
+The discriminability index $d'$ measures how well two response distributions can be separated. A common definition is:
+
+\[
+d'
+=
+\frac{\mu_+ - \mu_-}
+{\sqrt{\frac{1}{2}(\sigma_+^2 + \sigma_-^2)}},
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $\mu_+$ and $\mu_-$ are the mean firing rates for the two stimulus classes;
+    \item $\sigma_+^2$ and $\sigma_-^2$ are their variances.
+\end{itemize}
+
+Large $d'$ means high discriminability. Small $d'$ means strong overlap and poor discriminability.
+
+\begin{authornote}
+$d'$ increases when the means of the two classes move far apart or when the variability of the responses decreases. A neuron with noisy responses may be hard to decode even if its average response differs between conditions.
+\end{authornote}
+
+\subsection{Threshold-Based Classification}
+
+A simple decoding strategy is to classify the stimulus using a threshold $z$ on the firing rate.
+
+For example:
+
+\[
+r > z \Rightarrow \text{class } +,
+\]
+
+\[
+r \leq z \Rightarrow \text{class } -.
+\]
+
+Changing $z$ changes the behavior of the classifier. A low threshold may detect many positive cases but also produce many false positives. A high threshold may reduce false positives but increase false negatives.
+
+\subsection{Confusion Matrix: TP, TN, FP, FN}
+
+The classification result can be summarized using:
+
+\begin{itemize}[noitemsep]
+    \item True Positive, TP: the stimulus is positive and the classifier says positive;
+    \item True Negative, TN: the stimulus is negative and the classifier says negative;
+    \item False Positive, FP: the stimulus is negative but the classifier says positive;
+    \item False Negative, FN: the stimulus is positive but the classifier says negative.
+\end{itemize}
+
+From these values, one can define:
+
+\[
+\text{True Positive Rate}
+=
+\frac{TP}{TP+FN},
+\]
+
+\[
+\text{False Positive Rate}
+=
+\frac{FP}{FP+TN}.
+\]
+
+\subsection{ROC Curve}
+
+The Receiver Operating Characteristic, ROC, curve describes classifier performance as the threshold $z$ changes.
+
+The ROC curve plots:
+
+\[
+\text{False Positive Rate}
+\quad \text{versus} \quad
+\text{True Positive Rate}.
+\]
+
+A ROC curve close to the diagonal corresponds to random classification. A curve close to the upper-left corner corresponds to high accuracy.
+
+\subsection{Area Under the Curve}
+
+The Area Under the Curve, AUC, summarizes the ROC curve in a single number.
+
+\[
+0.5 \leq AUC \leq 1.
+\]
+
+\begin{itemize}[noitemsep]
+    \item $AUC = 0.5$: chance-level classification;
+    \item $AUC = 1$: perfect classification.
+\end{itemize}
+
+\begin{authornote}
+AUC is useful because it evaluates the classifier across all possible thresholds. Accuracy at a single threshold may be misleading if the threshold was chosen badly.
+\end{authornote}
+
+\subsection{Subject and Classifier Performance}
+
+If neural decoding performance is close to behavioral performance, one may hypothesize that the neural population under study is actually involved in the perceptual or decision process used by the subject.
+
+\begin{authornote}
+This does not prove causality by itself. Similarity between neural decoding and behavior suggests relevance, but proving that a neural population causes the behavior requires stronger evidence, such as perturbation or intervention.
+\end{authornote}
+
+\section{Brain Networks I: Correlation and Coherence}
+
+\subsection{Why Multivariate Analysis?}
+
+Univariate analysis studies each biological signal independently. However, the brain is a complex system, so it is often necessary to analyze not only single signals but also their interdependencies.
+
+Multivariate analysis studies how multiple signals interact.
+
+\begin{authornote}
+A brain region may look unremarkable when studied alone but become important when considered as part of a network. This is why network neuroscience is necessary.
+\end{authornote}
+
+\subsection{Network Neuroscience}
+
+Network neuroscience aims to map, record, analyze, and model the elements and interactions of neurobiological systems. The objective is to estimate dynamic brain networks at different levels, from molecules and neurons to brain areas and social systems.
+
+\subsection{Types of Brain Connectivity}
+
+Brain connectivity can be classified into three main types:
+
+\begin{enumerate}[noitemsep]
+    \item anatomical connectivity;
+    \item functional connectivity;
+    \item effective connectivity.
+\end{enumerate}
+
+\subsection{Anatomical Connectivity}
+
+Anatomical connectivity refers to physical or structural connections linking sets of neurons or neuronal elements.
+
+It is relatively stable at short time scales, such as seconds or minutes, but can change over longer time scales due to plasticity.
+
+It can be measured using:
+
+\begin{itemize}[noitemsep]
+    \item invasive tracing studies;
+    \item non-invasive diffusion-weighted imaging techniques.
+\end{itemize}
+
+Anatomical connectivity is the structural basis for functional and effective connectivity, but it cannot fully explain them.
+
+\subsection{Functional Connectivity}
+
+Functional connectivity describes statistical dependencies between signals. It is model-free and essentially descriptive.
+
+It can be quantified using measures such as:
+
+\begin{itemize}[noitemsep]
+    \item correlation;
+    \item coherence;
+    \item transfer entropy.
+\end{itemize}
+
+\begin{authornote}
+Functional connectivity says that two signals are statistically related. It does not, by itself, tell us whether one signal causes the other.
+\end{authornote}
+
+\subsection{Effective Connectivity}
+
+Effective connectivity refers to the influence that one neural system exerts over another. It is based on directed or causal influence and usually depends on a model.
+
+It tries to explain observed dependencies in terms of coupling between systems.
+
+\begin{authornote}
+Functional connectivity is about association. Effective connectivity is about directed influence. This distinction is central in brain network analysis.
+\end{authornote}
+
+\subsection{Correlation and Coherence}
+
+Correlation measures the linear relationship between two signals in the time domain. Coherence extends this idea to the frequency domain.
+
+Ordinary coherence measures the linear association between two signals at a given frequency.
+
+If $S_{xx}(f)$ and $S_{yy}(f)$ are the power spectral densities of signals $x$ and $y$, and $S_{xy}(f)$ is their cross-spectral density, ordinary coherence is:
+
+\[
+C_{xy}(f)
+=
+\frac{|S_{xy}(f)|^2}
+{S_{xx}(f)S_{yy}(f)}.
+\]
+
+\subsection{Properties of Ordinary Coherence}
+
+Ordinary coherence has the following properties:
+
+\begin{itemize}[noitemsep]
+    \item it is a spectral measure, so it depends on frequency;
+    \item it is normalized between 0 and 1;
+    \item $C_{xy}(f_0)=0$ means independence at frequency $f_0$;
+    \item $C_{xy}(f_0)=1$ means maximum linear correlation at frequency $f_0$.
+\end{itemize}
+
+\begin{authornote}
+Coherence is useful when we care about rhythms. For example, two EEG channels may be coherent in the alpha band but not in the beta band. This frequency-specific view is lost if we only compute time-domain correlation.
+\end{authornote}
+
+\subsection{Limitations of Correlation and Coherence}
+
+Correlation and coherence are useful but limited:
+
+\begin{itemize}[noitemsep]
+    \item they do not provide directionality;
+    \item they cannot distinguish direct from indirect interactions;
+    \item they may be affected by a common source;
+    \item high correlation does not imply causation.
+\end{itemize}
+
+The common source problem occurs when two measured signals appear correlated because both are driven by a third source.
+
+\begin{authornote}
+The common source problem is especially important in EEG. Due to volume conduction, the same neural generator can be observed by multiple electrodes, creating apparent connectivity between channels even when there is no true interaction between the underlying brain regions.
+\end{authornote}
+
+\section{Brain Networks II: Causality and Directed Connectivity}
+
+\subsection{Two Definitions of Causality}
+
+The slides distinguish two main ideas of causality.
+
+The first is physical influence or control. In this case, changing a cause should change its consequence. This requires controlled interventions and assessment of their effects.
+
+The second is temporal precedence. Causes precede their consequences, so one can test whether past values of one signal improve the prediction of another signal.
+
+\begin{authornote}
+Physical causality is stronger but harder to test, because it requires intervention. Temporal precedence is easier to test from observational data, but it gives a weaker form of causality.
+\end{authornote}
+
+\subsection{Statistical Causality}
+
+In the statistical sense, if one can predict a signal better by incorporating past information from another signal than by using only its own past, then the second signal can be considered causal to the first one.
+
+This idea was introduced by Wiener and later formalized by Granger.
+
+\subsection{Wiener-Granger Causality}
+
+A time series $a[n]$ is said to Granger-cause another time series $b[n]$ if the past of $a[n]$ significantly improves the prediction of $b[n]$ beyond what can be predicted from the past of $b[n]$ alone.
+
+Importantly, Granger causality is directional:
+
+\[
+a \rightarrow b
+\]
+
+does not necessarily imply:
+
+\[
+b \rightarrow a.
+\]
+
+\subsection{Linear Autoregressive Model}
+
+A linear autoregressive model, AR model, predicts the current value of a signal from its past values:
+
+\[
+x[n]
+=
+-\sum_{k=1}^{p}
+a[k]x[n-k]
++
+e[n],
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $x[n]$ is the time series;
+    \item $a[k]$ are autoregressive parameters;
+    \item $p$ is the model order;
+    \item $e[n]$ is the residual or prediction error.
+\end{itemize}
+
+The predicted value is:
+
+\[
+\hat{x}[n]
+=
+-\sum_{k=1}^{p}
+a[k]x[n-k],
+\]
+
+and the residual is:
+
+\[
+e[n]
+=
+x[n] - \hat{x}[n].
+\]
+
+The coefficients are chosen to minimize the squared prediction error.
+
+\begin{authornote}
+An AR model is basically a memory model: it says that the present value of a signal can be approximated as a weighted combination of its past values.
+\end{authornote}
+
+\subsection{Bivariate Autoregressive Model}
+
+To test whether $x$ helps predict $y$, one compares two models.
+
+First, a univariate model predicts $y[n]$ using only the past of $y$:
+
+\[
+y[n]
+=
+\sum_{k=1}^{p}
+b_y[k]y[n-k]
++
+e_y[n].
+\]
+
+Then, a bivariate model predicts $y[n]$ using both the past of $y$ and the past of $x$:
+
+\[
+y[n]
+=
+\sum_{k=1}^{p}
+a_{yx}[k]x[n-k]
++
+\sum_{k=1}^{p}
+b_{yx}[k]y[n-k]
++
+e_{yx}[n].
+\]
+
+If the second model has a smaller residual variance, then $x$ improves the prediction of $y$.
+
+\subsection{Granger Causality Index}
+
+A common Granger causality index from $x$ to $y$ is:
+
+\[
+GC_{x \rightarrow y}
+=
+\ln
+\left(
+\frac{\operatorname{var}(e_y)}
+{\operatorname{var}(e_{yx})}
+\right).
+\]
+
+If the bivariate model does not improve prediction, then:
+
+\[
+\operatorname{var}(e_y)
+\approx
+\operatorname{var}(e_{yx})
+\]
+
+and:
+
+\[
+GC_{x \rightarrow y}
+\approx 0.
+\]
+
+If the past of $x$ improves the prediction of $y$, then:
+
+\[
+\operatorname{var}(e_{yx})
+<
+\operatorname{var}(e_y)
+\]
+
+and:
+
+\[
+GC_{x \rightarrow y} > 0.
+\]
+
+\begin{authornote}
+Granger causality does not mean philosophical causality. It means predictive causality: the past of one signal contains useful information to predict another signal.
+\end{authornote}
+
+\subsection{Advantages and Limitations of Granger Causality}
+
+Advantages:
+
+\begin{itemize}[noitemsep]
+    \item it provides directionality;
+    \item it is based on prediction;
+    \item it can be applied to time series;
+    \item it can be extended to multivariate models.
+\end{itemize}
+
+Limitations:
+
+\begin{itemize}[noitemsep]
+    \item it assumes that causes precede effects in time;
+    \item it depends on the quality and stationarity of the data;
+    \item it may be affected by hidden variables;
+    \item pairwise analysis can produce misleading results if other relevant signals are ignored;
+    \item it does not prove physical causation.
+\end{itemize}
+
+\subsection{Pairwise and Multivariate Approaches}
+
+In the pairwise approach, signals are analyzed two at a time. For example, causality is estimated between $x_1$ and $x_2$, then between $x_1$ and $x_3$, and so on.
+
+The limitation is that a pair of signals may not contain all relevant information. A third signal may mediate or explain the apparent causal relation.
+
+In the multivariate approach, all signals are modeled together. This can reduce spurious links caused by indirect interactions or hidden common drivers within the measured set.
+
+\begin{authornote}
+Pairwise Granger causality is easier to compute and interpret, but it can confuse direct and indirect interactions. Multivariate analysis is more realistic for brain networks, but it requires more data and careful model estimation.
+\end{authornote}
+
+\subsection{Partial Directed Coherence}
+
+Partial Directed Coherence, PDC, is a frequency-domain measure derived from a multivariate autoregressive model. It is used to estimate directed connectivity between signals at different frequencies.
+
+PDC can be used to build directed brain networks where:
+
+\begin{itemize}[noitemsep]
+    \item nodes are brain regions or electrodes;
+    \item directed edges represent frequency-specific causal influence;
+    \item edge strength depends on the PDC value.
+\end{itemize}
+
+\begin{authornote}
+PDC is especially useful when we expect brain interactions to be rhythm-specific. For example, one region may influence another in the alpha band but not in the beta band.
+\end{authornote}
+
+\section{Graph Theory and Network Neuroscience}
+
+\subsection{Graphs and Brain Networks}
+
+A graph is a mathematical representation of a network. It consists of:
+
+\begin{itemize}[noitemsep]
+    \item vertices, also called nodes;
+    \item edges, representing connections among nodes.
+\end{itemize}
+
+In network neuroscience:
+
+\begin{itemize}[noitemsep]
+    \item nodes may represent brain regions or electrodes;
+    \item edges may represent anatomical, functional, or effective connectivity.
+\end{itemize}
+
+Graphs can also be represented using adjacency matrices.
+
+\subsection{Graph Properties}
+
+Graphs can be classified according to directionality and weight.
+
+According to directionality:
+
+\begin{itemize}[noitemsep]
+    \item undirected graphs: edges have no direction;
+    \item directed graphs: edges have a direction.
+\end{itemize}
+
+According to weight:
+
+\begin{itemize}[noitemsep]
+    \item binary graphs: edges are either present or absent;
+    \item weighted graphs: edges have numerical values.
+\end{itemize}
+
+\subsection{Adjacency Matrix}
+
+The adjacency matrix $A$ represents the connections of a graph:
+
+\[
+A = [a_{ij}].
+\]
+
+In general:
+
+\[
+a_{ij} = 0
+\quad \text{if there is no link from node } i \text{ to node } j,
+\]
+
+\[
+a_{ij} \neq 0
+\quad \text{if there is a link from node } i \text{ to node } j.
+\]
+
+For binary graphs:
+
+\[
+a_{ij} \in \{0,1\}.
+\]
+
+For weighted graphs:
+
+\[
+a_{ij} = w_{ij}.
+\]
+
+In undirected graphs, the adjacency matrix is symmetric:
+
+\[
+a_{ij} = a_{ji}.
+\]
+
+In directed graphs, the matrix is generally asymmetric.
+
+\begin{authornote}
+The adjacency matrix is the object from which almost all graph indices are computed. Once you can read the matrix, you can compute degree, density, distance, efficiency, modularity, and other network measures.
+\end{authornote}
+
+\subsection{Why Graph Analysis in Neuroscience?}
+
+Graph analysis is useful because it provides quantitative indices describing network structure at different scales:
+
+\begin{itemize}[noitemsep]
+    \item local scale: properties of single nodes;
+    \item global scale: properties of the whole network;
+    \item mesoscale: communities or modules.
+\end{itemize}
+
+These indices can be used:
+
+\begin{itemize}[noitemsep]
+    \item to compare experimental conditions;
+    \item to compare groups of subjects;
+    \item as markers of pathological conditions;
+    \item to support diagnosis, prognosis, or evaluation of treatments;
+    \item as features for classification and decoding.
+\end{itemize}
+
+\subsection{Density}
+
+The density of a graph measures how many possible connections are actually present.
+
+For a directed graph with $N$ nodes and $L$ directed links:
+
+\[
+D =
+\frac{L}{N(N-1)}.
+\]
+
+For an undirected graph:
+
+\[
+D =
+\frac{2L}{N(N-1)}.
+\]
+
+Density ranges from 0 to 1.
+
+\begin{itemize}[noitemsep]
+    \item $D=0$: no edges;
+    \item $D=1$: fully connected graph.
+\end{itemize}
+
+\subsection{Degree}
+
+The degree of a node is the number of its connections.
+
+For an undirected binary graph, the degree of node $i$ is:
+
+\[
+k_i =
+\sum_{j=1}^{N}
+a_{ij}.
+\]
+
+For a directed graph, one distinguishes:
+
+\[
+k_i^{in}
+=
+\sum_{j=1}^{N}
+a_{ji},
+\]
+
+\[
+k_i^{out}
+=
+\sum_{j=1}^{N}
+a_{ij}.
+\]
+
+The total degree is:
+
+\[
+k_i =
+k_i^{in} + k_i^{out}.
+\]
+
+\begin{authornote}
+In brain networks, a node with high degree may be interpreted as a hub, meaning a region that is strongly connected to many other regions.
+\end{authornote}
+
+\subsection{Distance}
+
+The distance $d_{ij}$ between two nodes is the length of the shortest path connecting node $i$ to node $j$.
+
+If there is no path from $i$ to $j$, then:
+
+\[
+d_{ij} = \infty.
+\]
+
+Distance is important because it describes how many steps are needed for information to travel from one node to another.
+
+\subsection{Global Efficiency}
+
+Global efficiency measures how efficiently information is exchanged in the whole network. It is defined as the average reciprocal distance between pairs of nodes.
+
+For a directed graph:
+
+\[
+E_g =
+\frac{1}{N(N-1)}
+\sum_{\substack{i,j=1 \\ i \neq j}}^{N}
+\frac{1}{d_{ij}}.
+\]
+
+For an undirected graph:
+
+\[
+E_g =
+\frac{2}{N(N-1)}
+\sum_{i<j}
+\frac{1}{d_{ij}}.
+\]
+
+Global efficiency ranges from 0 to 1:
+
+\[
+E_g = 1
+\quad \text{for a fully connected graph},
+\]
+
+\[
+E_g = 0
+\quad \text{for a void graph}.
+\]
+
+\begin{authornote}
+Global efficiency is a measure of integration. A network with high global efficiency allows information to travel quickly between distant nodes.
+\end{authornote}
+
+\subsection{Local Efficiency}
+
+For each node $i$, one can define a subgraph $S_i$ made of the nodes directly connected to $i$, excluding $i$ itself. The global efficiency of this subgraph is $E_g(S_i)$.
+
+The average local efficiency is:
+
+\[
+E_l =
+\frac{1}{N}
+\sum_{i=1}^{N}
+E_g(S_i).
+\]
+
+Local efficiency measures the tendency of the network to form strongly connected local subgroups. It is also related to robustness: if node $i$ is removed, local efficiency describes how well its neighbors remain connected.
+
+\begin{authornote}
+Global efficiency is about communication across the whole network. Local efficiency is about how well local neighborhoods remain connected.
+\end{authornote}
+
+\subsection{Communities, Divisibility, and Modularity}
+
+A community is a subnetwork that shows an organized structure with respect to the entire network. In many applications, it is useful to quantify whether a network can be divided into communities.
+
+Two mesoscale measures are:
+
+\begin{itemize}[noitemsep]
+    \item divisibility;
+    \item modularity.
+\end{itemize}
+
+Divisibility measures segregation between communities. Modularity compares the number of intra-community links with the number expected under a random distribution of links.
+
+For undirected graphs, modularity compares:
+
+\[
+a_{ij}
+-
+\frac{g_i g_j}{2L},
+\]
+
+where:
+
+\begin{itemize}[noitemsep]
+    \item $a_{ij}$ indicates the existence or weight of the link between $i$ and $j$;
+    \item $g_i$ and $g_j$ are the degrees of the two nodes;
+    \item $L$ is the number of links.
+\end{itemize}
+
+If there are more intra-community links than expected by chance:
+
+\[
+Q > 0.
+\]
+
+Otherwise:
+
+\[
+Q \leq 0.
+\]
+
+For directed graphs, the expected random link depends on in-degree and out-degree:
+
+\[
+a_{ij}
+-
+\frac{g_i^{in}g_j^{out}}{L}.
+\]
+
+\begin{authornote}
+Modularity is high when communities are internally dense and externally weakly connected. In brain networks, this is interpreted as network segregation.
+\end{authornote}
+
+\subsection{Integration and Segregation}
+
+Graph indices can be interpreted in terms of integration and segregation.
+
+A highly integrated network tends to have:
+
+\begin{itemize}[noitemsep]
+    \item high global efficiency;
+    \item low local efficiency;
+    \item low divisibility;
+    \item low modularity.
+\end{itemize}
+
+A highly segregated network tends to have:
+
+\begin{itemize}[noitemsep]
+    \item low global efficiency;
+    \item high local efficiency;
+    \item high divisibility;
+    \item high modularity.
+\end{itemize}
+
+\begin{authornote}
+Integration means that distant parts of the network communicate efficiently. Segregation means that specialized communities are strongly internally connected. Healthy brain networks often need a balance between both.
+\end{authornote}
+
+\subsection{Reference Networks}
+
+Real brain networks can be compared with reference networks.
+
+Main reference networks include:
+
+\begin{itemize}[noitemsep]
+    \item regular or lattice networks;
+    \item random networks;
+    \item small-world networks.
+\end{itemize}
+
+A regular network has strong local structure but long paths between distant nodes. It is highly segregated but poorly integrated.
+
+A random network has short paths and high global integration, but poor local structure.
+
+A small-world network combines high local clustering with short global paths. It represents a balance between segregation and integration.
+
+\begin{authornote}
+The small-world concept is important because brain networks are not expected to be completely regular or completely random. They need specialized local processing, but also efficient global communication.
+\end{authornote}
+
+\subsection{Core Exam Takeaways}
+
+\begin{enumerate}
+    \item Neuroengineering connects neuroscience, artificial intelligence, robotics, and control engineering.
+    \item The neuron collects information, integrates it, and generates a binary output.
+    \item The neuronal membrane is selectively permeable and its electrical behavior depends on ion gradients, channels, and pumps.
+    \item The Nernst equation gives the equilibrium potential for a single ion family.
+    \item The resting membrane potential is approximately $-70\,\text{mV}$.
+    \item Depolarization makes the membrane potential less negative; hyperpolarization makes it more negative.
+    \item EPSPs depolarize the postsynaptic membrane; IPSPs hyperpolarize it.
+    \item Temporal and spatial summation integrate multiple synaptic inputs.
+    \item The action potential is an all-or-none event and represents the binary output of the neuron.
+    \item Spike timing, not spike shape, carries the relevant information.
+    \item Continuous conduction is slower; saltatory conduction is faster and depends on myelin and nodes of Ranvier.
+    \item The cortex is organized in layers, columns, areas, circuits, and networks.
+    \item Grey matter contains cell bodies and dendrites; white matter contains myelinated axons.
+    \item The frontal, parietal, occipital, and temporal lobes have different dominant functions.
+    \item Brodmann areas are based on cytoarchitecture and are associated with function.
+    \item The visual cortex is retinotopic; the motor and somatosensory cortices are somatotopic.
+    \item Brain plasticity occurs throughout life and supports learning, memory, recovery, and rehabilitation.
+    \item The main plasticity mechanisms are synaptic plasticity, axonal sprouting or pruning, axonal regeneration, and unmasking of latent connections.
+
+    \item Neural encoding describes how a stimulus is transformed into a neural response.
+    \item Neural decoding infers the stimulus or intention from the neural response.
+    \item The rate-coding hypothesis uses firing rate as the main information carrier.
+    \item A spike train can be represented as a sum of Dirac delta functions.
+    \item The spike-count firing rate is $r=n/T$.
+    \item Tuning curves describe the average firing rate as a function of a stimulus feature.
+    \item A Poisson spike generator models spike counts probabilistically but ignores refractory periods unless constrained.
+    \item Decoding can be formulated as computing $P(s \mid r)$.
+    \item Discriminability $d'$ measures how separable two response distributions are.
+    \item ROC curves describe classifier performance across thresholds.
+    \item AUC ranges from 0.5, chance level, to 1, perfect classification.
+    \item Functional connectivity describes statistical dependence; effective connectivity describes directed influence.
+    \item Coherence measures linear dependence between two signals at a specific frequency.
+    \item Correlation and coherence do not imply causality and may be affected by common sources.
+    \item Granger causality is based on improved prediction from past information.
+    \item Pairwise causality is simple but may be misleading; multivariate causality is more complete.
+    \item A graph is made of nodes and edges; in neuroscience, nodes may be brain regions or electrodes.
+    \item Binary and weighted graphs differ in whether edges only indicate presence or also strength.
+    \item Directed and undirected graphs differ in whether edge direction matters.
+    \item Density, degree, and distance are basic graph measures.
+    \item Global efficiency measures network integration.
+    \item Local efficiency measures local connectedness and robustness.
+    \item Modularity and divisibility measure community structure and segregation.
+    \item Small-world networks balance integration and segregation.
+\end{enumerate}
+
+\section{Applications of Neuroengineering}
+
+\subsection{Plasticity-Based Recovery}
+
+A central application of neuroengineering is neurorehabilitation. The basic idea is that the brain is capable of partial self-repair by modifying patterns of synaptic connectivity. These changes depend on received stimuli, performed activities, and experience.
+
+Motor recovery after injury follows principles similar to normal motor learning. The patient must repeatedly attempt movements, receive feedback, and gradually reduce movement errors.
+
+\begin{authornote}
+The important conceptual bridge is this: rehabilitation is not only ``exercise''. It is guided learning. The nervous system changes when attempts, errors, feedback, and rewards are arranged in a meaningful way.
+\end{authornote}
+
+\subsection{Motor Learning and Prediction Error}
+
+Motor learning occurs through a trial-and-error process. The brain predicts the outcome of a movement and compares this prediction with the actual observed outcome.
+
+The difference between predicted and observed outcome is called prediction error:
+
+\[
+\text{prediction error}
+=
+\text{observed outcome}
+-
+\text{predicted outcome}.
+\]
+
+Learning occurs when the nervous system uses this error to update future motor commands.
+
+\begin{authornote}
+Prediction error is one of the most important ideas in motor learning. If there is no error signal, the brain has little information about how to improve the next attempt.
+\end{authornote}
+
+\subsection{Importance of Feedback}
+
+Feedback is necessary for learning. It allows the subject to evaluate performance and correct future actions.
+
+There are two main types of feedback:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{intrinsic feedback}: provided by the senses, such as vision, proprioception, and touch;
+    \item \textbf{extrinsic or augmented feedback}: provided by an external source, giving additional information about movement quality.
+\end{itemize}
+
+In neurorehabilitation, augmented feedback can be delivered through visual displays, robotic devices, virtual reality, auditory cues, or brain-computer interfaces.
+
+\begin{authornote}
+Intrinsic feedback is what the body naturally provides. Augmented feedback is added by the rehabilitation system to make the error or the success more visible, more informative, or more motivating.
+\end{authornote}
+
+\subsection{Neurorehabilitation Framework}
+
+Neurorehabilitation can be understood as a multidisciplinary process involving:
+
+\begin{itemize}[noitemsep]
+    \item diagnosis;
+    \item rehabilitation intervention;
+    \item evaluation of the outcome;
+    \item assistive technology;
+    \item prostheses and orthoses;
+    \item network neuroscience.
+\end{itemize}
+
+Network neuroscience can support all these phases by providing quantitative indices of brain organization and plasticity.
+
+\begin{authornote}
+The role of network neuroscience is not only theoretical. It can provide biomarkers to evaluate whether a therapy is actually changing brain organization.
+\end{authornote}
+
+\subsection{Clinical Scales}
+
+Functional evaluation in neurorehabilitation often uses clinical scales. Examples include:
+
+\begin{itemize}[noitemsep]
+    \item Barthel Index;
+    \item Motricity Index;
+    \item Fugl-Meyer Scale.
+\end{itemize}
+
+These scales quantify motor ability using scores specific to body regions and movement types. The values can be compared with normative data or used to evaluate recovery over time.
+
+\begin{authornote}
+Clinical scales measure functional outcome, but they do not directly explain the neural mechanisms behind recovery. This is why neurophysiological measures, such as EEG connectivity or graph indices, can complement clinical assessment.
+\end{authornote}
+
+\subsection{BCI-Supported Motor Rehabilitation}
+
+A relevant example is BCI-supported motor imagery training of the upper limb in post-stroke patients. In this approach, patients imagine moving the impaired limb while EEG activity is recorded.
+
+If the BCI detects the appropriate motor imagery pattern, the system provides feedback or activates an external device. This can help reinforce the association between motor intention and sensory feedback.
+
+A study reported an increase in inter-hemispheric connectivity in the BCI group and correlations between graph indices and functional outcome.
+
+\begin{authornote}
+The rehabilitation logic is Hebbian: if motor intention and feedback occur together repeatedly, the connection between surviving motor circuits and sensory consequences may be strengthened.
+\end{authornote}
+
+\subsection{Robotic Devices}
+
+Robotic devices are used in rehabilitation of both upper and lower limbs. They can support, guide, or complete movements that the patient cannot yet perform independently.
+
+Robotic devices provide several advantages:
+
+\begin{itemize}[noitemsep]
+    \item accurate measurement of movement kinematics;
+    \item accurate measurement of movement dynamics;
+    \item controlled task timing;
+    \item controlled environmental stimuli;
+    \item controlled augmented feedback;
+    \item possibility of intensive and repetitive therapy.
+\end{itemize}
+
+\begin{authornote}
+A robot is not useful only because it moves the limb. It is also a measurement device. It can quantify position, velocity, force, timing, and improvement across sessions.
+\end{authornote}
+
+\subsection{Virtual and Augmented Reality}
+
+Virtual and augmented reality can support neurorehabilitation by creating engaging and realistic environments. These environments are designed to increase motivation and attention.
+
+They can also provide feedback that would be difficult to deliver in a conventional clinical setting.
+
+\begin{authornote}
+Motivation matters in rehabilitation because plasticity depends on repeated practice. If the task is boring, the patient may not perform enough meaningful repetitions.
+\end{authornote}
+
+\subsection{Advantages of Innovative Therapies}
+
+Innovative neuroengineering-based therapies have several advantages.
+
+Brain-computer interaction-based rehabilitation allows controlled activation of specific brain areas. When the patient correctly activates these areas but cannot yet complete the movement, a motivating reward can be provided.
+
+If the limb is connected to a robotic device, the robot can complete the task as a reward once the movement has been initiated by the patient.
+
+Robotic devices also allow intensive therapies at a lower cost compared to conventional therapy, because they can repeat structured tasks many times and record quantitative data automatically.
+
+\subsection{Cognitive Rehabilitation and Neurofeedback}
+
+Neuroengineering is also applied to cognitive rehabilitation. One example is EEG-based neurofeedback using sensorimotor rhythms.
+
+In the post-stroke cognitive rehabilitation example, neurofeedback was used with three EEG electrodes and focused on sensorimotor rhythms. The goal was to support memory functions after stroke.
+
+\begin{authornote}
+Neurofeedback is based on the idea that if the patient sees a real-time representation of a brain rhythm, they may learn to modulate it voluntarily.
+\end{authornote}
+
+\subsection{Home-Based Systems}
+
+Home-based systems can deliver rehabilitation outside the hospital. They may include physiological signal acquisition, EEG or ECG recording, visual and auditory feedback, and a connection to a personal computer.
+
+The advantage is that therapy can become more continuous, accessible, and integrated into daily life.
+
+\begin{authornote}
+Home-based systems are promising, but they must be reliable and easy to use. Otherwise, the patient may not adhere to the therapy or the recorded data may become noisy and difficult to interpret.
+\end{authornote}
+
+\subsection{Prostheses, Orthoses, and Neuroprosthetics}
+
+A prosthesis replaces a missing or impaired body part or function. An orthosis supports or assists an existing body part or function.
+
+Neuroprosthetics is a field at the intersection of neuroscience, bioengineering, robotics, control engineering, and computer science. Its aim is to design devices able to replace motor, sensory, or cognitive functions impaired by pathological or traumatic events.
+
+In neuroengineering, the key point is that these devices may interface directly with the brain.
+
+\subsection{Input and Output Neuroprostheses}
+
+Neuroprostheses can be classified as:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{output prostheses};
+    \item \textbf{input prostheses}.
+\end{itemize}
+
+Output prostheses decode brain signals to convert user intentions into actions. Examples include robotic arms or artificial limbs controlled by brain activity.
+
+Input prostheses measure physical signals and convert them into perceptions. Examples include auditory or visual neuroprostheses.
+
+\begin{authornote}
+Output prosthesis means from brain to device. Input prosthesis means from external world to nervous system.
+\end{authornote}
+
+\subsection{Sensory Neuroprostheses}
+
+Auditory neuroprostheses are among the most successful sensory neuroprostheses. The most common example is the cochlear implant, used to restore hearing function.
+
+A cochlear implant includes external components, such as:
+
+\begin{itemize}[noitemsep]
+    \item microphone;
+    \item speech processor;
+    \item transmitter.
+\end{itemize}
+
+It also includes internal components, such as:
+
+\begin{itemize}[noitemsep]
+    \item receiver;
+    \item electrodes stimulating the acoustic nerve.
+\end{itemize}
+
+Visual neuroprostheses aim to restore visual function in conditions such as macular degeneration and other visual pathologies.
+
+\subsection{Motor Neuroprosthetics and Functional Electrical Stimulation}
+
+Motor neuroprosthetics includes artificial limbs, exoskeletons, and electrical stimulation systems. These systems can be controlled either by EMG signals or by brain activity.
+
+Functional Electrical Stimulation, FES, delivers electrical current to the muscle and produces contraction.
+
+\[
+\text{electrical stimulation}
+\rightarrow
+\text{muscle contraction}.
+\]
+
+FES can be used both as an assistive technology and as part of rehabilitation, especially when paired with motor intention detected by a BCI.
+
+\subsection{Assistive Technology for Communication and Social Interaction}
+
+Assistive technologies can support communication and social interaction in patients with severe motor impairment.
+
+Examples include systems for:
+
+\begin{itemize}[noitemsep]
+    \item communication through alternative input channels;
+    \item computer access;
+    \item social interaction;
+    \item environmental control.
+\end{itemize}
+
+\begin{authornote}
+The main objective is autonomy. Even a simple reliable communication channel can strongly improve quality of life for patients with severe motor impairment.
+\end{authornote}
+
+\subsection{Core Exam Takeaways}
+
+\begin{enumerate}
+    \item Neurorehabilitation exploits brain plasticity.
+    \item Recovery follows principles similar to normal motor learning.
+    \item Motor learning depends on prediction error.
+    \item Feedback is necessary for learning.
+    \item Intrinsic feedback comes from the senses.
+    \item Extrinsic or augmented feedback is provided by external sources.
+    \item Clinical scales quantify functional outcome.
+    \item BCI-supported rehabilitation can reinforce motor intention and sensory feedback.
+    \item Robotic devices can both assist movement and measure kinematics and dynamics.
+    \item Virtual reality can increase motivation and attention.
+    \item Neurofeedback can be used for cognitive rehabilitation.
+    \item Neuroprosthetics aims to replace impaired motor, sensory, or cognitive functions.
+    \item Output prostheses decode intentions into actions.
+    \item Input prostheses convert physical signals into perceptions.
+    \item FES delivers current to muscles and produces contraction.
+\end{enumerate}
+
+\subsection{True Statements}
+
+\begin{enumerate}[label=\arabic*.]
+    \item The brain is capable of self-repair by modifying synaptic connectivity patterns.
+    
+    \item Plastic changes depend on received stimuli, performed activities, and experience.
+    
+    \item Motor learning occurs in response to external perturbations and body modifications that generate movement errors.
+    
+    \item Recovery processes follow normal learning processes.
+    
+    \item We learn to control movements through a trial-and-error process.
+    
+    \item Learning is based on prediction error, defined as the difference between the outcome predicted by the brain and the observed movement outcome.
+    
+    \item Feedback is necessary for learning.
+    
+    \item Intrinsic feedback is provided by the senses and allows evaluation of performance for each movement.
+    
+    \item Extrinsic or augmented feedback is provided by an external source that supplies additional information about movement quality.
+    
+    \item Functional evaluation in neurorehabilitation involves clinical scales such as the Barthel Index, Motricity Index, and Fugl-Meyer Scale.
+    
+    \item Motor ability can be quantified through scores specific to body regions and movement types.
+    
+    \item BCI-supported motor imagery training can be used for upper-limb motor rehabilitation after stroke.
+    
+    \item Brain plasticity after stroke can be evaluated by measuring changes in brain connectivity.
+    
+    \item In BCI-supported motor rehabilitation, increased inter-hemispheric connectivity can be associated with recovery.
+    
+    \item Graph indices can correlate with functional outcome.
+    
+    \item Robotic devices can be used for upper-limb and lower-limb rehabilitation.
+    
+    \item Brain-computer interaction-based rehabilitation allows controlled activation of specific brain areas.
+    
+    \item When a patient correctly activates target brain areas but cannot complete a movement, a motivating reward can be provided.
+    
+    \item A robotic device can complete a task as a reward once movement has been initiated by the patient.
+    
+    \item Virtual reality enables learning in a more engaging and realistic environment designed to increase motivation and attention.
+    
+    \item Robotic devices can accurately measure movement kinematics and dynamics during recovery.
+    
+    \item Robot-assisted rehabilitation allows full control over task timing, environmental stimuli, and augmented feedback.
+    
+    \item Robotic devices make it possible to deliver intensive therapies at lower cost compared to conventional therapies.
+    
+    \item Neuroprosthetics is a field at the intersection of neuroscience, bioengineering, robotics, control engineering, and computer science.
+    
+    \item Neuroprosthetic devices aim to replace motor, cognitive, or sensory functions impaired by pathological or traumatic events.
+    
+    \item Output neuroprostheses rely on brain signal decoding to convert user intentions into actions.
+    
+    \item Input neuroprostheses rely on the measurement of physical signals to convert them into perceptions.
+    
+    \item The cochlear implant is an auditory neuroprosthesis used to restore hearing function.
+    
+    \item Visual neuroprostheses are designed to restore visual function in visual pathologies such as macular degeneration.
+    
+    \item Motor neuroprosthetics includes artificial limbs, exoskeletons, and electrical stimulation systems.
+    
+    \item Motor neuroprosthetic devices can be controlled by EMG signals or by brain activity.
+    
+    \item Functional Electrical Stimulation delivers current to a muscle and produces contraction.
+\end{enumerate}
+
+\section{Multiple-Subject Systems}
+
+\subsection{Human-to-Human Interactions}
+
+Human-to-human interactions are important for:
+
+\begin{itemize}[noitemsep]
+    \item human cognition;
+    \item development;
+    \item well-being;
+    \item society at large.
+\end{itemize}
+
+They are extremely complex because they have unpredictable time trajectories, require social settings, and include dynamic stimulation involving complex sensory features.
+
+These features include:
+
+\begin{itemize}[noitemsep]
+    \item facial expressions;
+    \item gestures;
+    \item postures;
+    \item actions;
+    \item intonation.
+\end{itemize}
+
+\begin{authornote}
+A social interaction is not just two isolated brains responding to fixed stimuli. Each person continuously changes the stimulus received by the other person.
+\end{authornote}
+
+\subsection{Alignment in Social Interaction}
+
+Human-to-human interactions are usually based on alignment. Examples of alignment include:
+
+\begin{itemize}[noitemsep]
+    \item bodily synchrony;
+    \item turn-taking during conversation;
+    \item similar orientation of attention;
+    \item empathy.
+\end{itemize}
+
+Interactions can be non-verbal, dynamic, and bilateral. They may be leader-follower interactions or symmetrical interactions.
+
+\begin{authornote}
+Alignment means that two people partially coordinate their behavior, attention, and sometimes physiological or neural dynamics during interaction.
+\end{authornote}
+
+\subsection{Inter-Brain Coupling}
+
+A group is a complex system and cannot be fully understood by analyzing its single elements separately. Therefore, in social neuroscience, one must study interactions among subjects.
+
+The content and timing of natural social interactions are unpredictable and differ from experiment to experiment.
+
+Interdependencies between the brain signals of two or more subjects may reveal neural processes that support the interaction.
+
+\[
+\text{single-subject analysis}
+\neq
+\text{full explanation of social interaction}.
+\]
+
+\begin{authornote}
+This is the key reason for hyperscanning: if the phenomenon depends on interaction, recording only one brain may miss the most important part of the process.
+\end{authornote}
+
+\subsection{Hyperscanning}
+
+Hyperscanning is the simultaneous recording of brain activity from two or more interacting subjects.
+
+It allows the study of:
+
+\begin{itemize}[noitemsep]
+    \item inter-brain coupling;
+    \item cooperation;
+    \item competition;
+    \item empathy;
+    \item joint action;
+    \item leader-follower dynamics.
+\end{itemize}
+
+\begin{authornote}
+Hyperscanning does not automatically prove that brains are directly communicating. It measures statistical dependencies between brain signals during interaction, which must be interpreted carefully.
+\end{authornote}
+
+\subsection{Multi-Subject Graph Theory Analysis}
+
+In multi-subject graph theory analysis, the network includes nodes belonging to different subjects.
+
+For two subjects, A and B, the connectivity matrix can be divided into:
+
+\begin{itemize}[noitemsep]
+    \item $C_A$: intra-subject connections within subject A;
+    \item $C_B$: intra-subject connections within subject B;
+    \item $I_{AB}$: inter-subject connections from subject A to subject B;
+    \item $I_{BA}$: inter-subject connections from subject B to subject A.
+\end{itemize}
+
+This allows the computation of graph measures that describe both within-brain and between-brain organization.
+
+\subsection{Inter-Subject Density}
+
+Inter-subject density measures the number of connections between subjects, normalized by the number of possible inter-subject connections.
+
+For two subjects A and B, it is based on the number of links in:
+
+\[
+I_{AB} + I_{BA}.
+\]
+
+\begin{authornote}
+Inter-subject density is a compact measure of how strongly the two brains appear connected during the task, according to the chosen connectivity method.
+\end{authornote}
+
+\subsection{Multi-Subject Efficiency, Modularity, and Divisibility}
+
+Global efficiency can be extended to multi-subject networks using the same logic as in single-subject graph theory:
+
+\[
+E_g =
+\frac{1}{N(N-1)}
+\sum_{\substack{i,j=1 \\ i \neq j}}^{N}
+\frac{1}{d_{ij}}.
+\]
+
+In multi-subject systems, efficiency can describe how easily information or statistical dependency can travel across the whole network, including nodes belonging to different subjects.
+
+Modularity and divisibility can be used to quantify whether nodes cluster according to subjects or according to task-related interaction patterns.
+
+\begin{authornote}
+If two subjects interact strongly, the network may become less separable into two independent brains. In other words, interaction can change the modular structure of the combined graph.
+\end{authornote}
+
+\subsection{Cooperation and Competition}
+
+Multi-subject network analysis has been applied to cooperation and competition. In card-game experiments, four subjects were recorded simultaneously.
+
+The baseline condition considered all possible pairs in the same game session. The cooperation condition involved players in the same team, with an asymmetric first-player and second-player task.
+
+Graph patterns differed across behaviors such as cooperation, defection, tit-for-tat, and mixed behavior. Classification analyses reported high accuracy in distinguishing behavioral conditions.
+
+\begin{authornote}
+The point is not only that people behave differently in cooperation and competition. Their brain-to-brain network organization can also change in a measurable way.
+\end{authornote}
+
+\subsection{Empathy}
+
+Graph indices can be modulated by the level of empathy between subjects.
+
+In the empathy example, the level of fairness experienced by one subject and the consequent altruistic help provided by another subject modulated brain network indices.
+
+The slides distinguish:
+
+\begin{itemize}[noitemsep]
+    \item compassion, described as negative empathy;
+    \item vicarious reward, described as positive empathy.
+\end{itemize}
+
+\begin{authornote}
+Empathy here is not treated only as a psychological label. It becomes something that can be studied through changes in interaction-related brain network indices.
+\end{authornote}
+
+\subsection{Joint Action}
+
+Joint action occurs when two or more individuals coordinate their actions toward a common goal.
+
+The slides describe three conditions:
+
+\begin{enumerate}[noitemsep]
+    \item joint condition;
+    \item PC condition;
+    \item solo condition.
+\end{enumerate}
+
+Graph analysis and classification can distinguish between these interaction conditions using measures such as global efficiency and local efficiency.
+
+\begin{authornote}
+Joint action is a good example of why single-subject analysis is limited. The relevant variable is not only what each subject does, but how their actions and brain dynamics become coordinated.
+\end{authornote}
+
+\subsection{Outside the Lab: Professional Pilots}
+
+Multi-subject systems can also be studied outside standard laboratory settings. One example involved professional pilots during simulated flight.
+
+The study included:
+
+\begin{itemize}[noitemsep]
+    \item 12 professional pilots;
+    \item 6 captains and 6 first officers;
+    \item 15 EEG electrodes plus ECG;
+    \item 90-minute flight simulation.
+\end{itemize}
+
+The instrumentation and simulated flight situations were manipulated to induce different levels and types of interaction between the two pilots.
+
+\begin{authornote}
+This example shows the ecological value of hyperscanning. Multi-subject neuroengineering can study interaction in realistic tasks, not only simplified laboratory paradigms.
+\end{authornote}
+
+\subsection{Future Directions}
+
+Future directions include the study of the development of cognitive functions in children and their alterations in psychiatric and behavioral disorders, such as Autism Spectrum Disorders.
+
+Other future directions include:
+
+\begin{itemize}[noitemsep]
+    \item rehabilitation of cognitive functions in pathological conditions;
+    \item enhancement of social skills;
+    \item definition of brain indices as outcome measures;
+    \item social robotics.
+\end{itemize}
+
+Social robotics aims to develop robots with human-like skills, able not only to mimic humans but also to interact with them naturally.
+
+\begin{authornote}
+The connection with robotics is very direct: if we understand human interaction quantitatively, we can design robots that interact more naturally with humans.
+\end{authornote}
+
+\subsection{Core Exam Takeaways}
+
+\begin{enumerate}
+    \item Human-to-human interactions are complex, dynamic, bilateral, and socially embedded.
+    \item Social interactions often involve alignment, such as bodily synchrony, turn-taking, shared attention, and empathy.
+    \item A group cannot be fully understood only by studying single subjects separately.
+    \item Inter-brain coupling studies dependencies between brain signals of interacting subjects.
+    \item Hyperscanning records multiple subjects simultaneously.
+    \item Multi-subject graph theory separates intra-subject and inter-subject connections.
+    \item Inter-subject density quantifies connections between subjects.
+    \item Multi-subject graph indices can describe cooperation, competition, empathy, and joint action.
+    \item Real-life interaction studies can be performed outside the lab, for example with professional pilots.
+    \item Future applications include cognitive rehabilitation, social skill enhancement, and social robotics.
+\end{enumerate}
+
+\subsection{True Statements}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Human-to-human interactions are important for human cognition, development, well-being, and society at large.
+    
+    \item Human-to-human interactions are extremely complex because they have unpredictable time trajectories.
+    
+    \item Human-to-human interactions require social settings.
+    
+    \item Human-to-human interactions include dynamic stimulation, or person stimuli, involving complex sensory features.
+    
+    \item Relevant person stimuli include facial expressions, gestures, postures, actions, and intonation.
+    
+    \item Human-to-human interactions are usually based on alignment.
+    
+    \item Alignment can include bodily synchrony, turn-taking during conversation, similar orientation of attention, and empathy.
+    
+    \item Human-to-human interactions can be non-verbal.
+    
+    \item Human-to-human interactions are dynamic and bilateral.
+    
+    \item Human-to-human interactions can be leader-follower interactions or symmetrical interactions.
+    
+    \item A complex system such as a group cannot be fully understood by analyzing only its single elements.
+    
+    \item The study of interaction is necessary to understand multi-subject systems.
+    
+    \item The content and timing of natural social interaction are unpredictable and differ from experiment to experiment.
+    
+    \item Interdependencies between two sets of brain signals can reveal brain processes that support interaction.
+    
+    \item Multi-subject graph theory analysis can include intra-subject and inter-subject connections.
+    
+    \item In a two-subject graph, $C_A$ and $C_B$ represent within-subject connections.
+    
+    \item In a two-subject graph, $I_{AB}$ and $I_{BA}$ represent between-subject connections.
+    
+    \item Inter-subject density is based on the number of connections in $I_{AB}+I_{BA}$ normalized by the number of possible inter-subject connections.
+    
+    \item Graph indices can be used to study cooperation and competition.
+    
+    \item In cooperation studies, different behavioral strategies such as cooperation, defection, tit-for-tat, and mixed behavior can be associated with different network patterns.
+    
+    \item Graph indices can be modulated by the level of empathy between subjects.
+    
+    \item Empathy-related graph modulation can depend on the fairness of treatment experienced by one subject and the altruistic help provided by another.
+    
+    \item Joint action can be studied through conditions such as joint, PC, and solo.
+    
+    \item Multi-subject classification analysis can distinguish different interaction conditions using graph indices.
+    
+    \item Real-life cooperation can be studied by simultaneously recording multiple subjects during a card game.
+    
+    \item Professional pilots can be studied in realistic settings using EEG and ECG during simulated flight.
+    
+    \item Multi-subject neuroengineering can be used to study different levels and kinds of interaction between people.
+    
+    \item Future directions include the study of cognitive development in children and modifications in psychiatric and behavioral disorders.
+    
+    \item Future applications include rehabilitation of cognitive functions and enhancement of social skills.
+    
+    \item Brain indices can be defined as outcome measures to quantify or describe the effect of rehabilitation or enhancement interventions.
+    
+    \item Social robotics aims to develop robots with human-like skills able to mimic and interact with humans in a natural way.
+\end{enumerate}

@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+
+\definecolor{notegray}{RGB}{245,245,245}
+\definecolor{noexamgreen}{RGB}{230,245,230}
+
+\newtcolorbox{authornote}{
+    enhanced,
+    breakable,
+    colback=notegray,
+    colframe=notegray,
+    boxrule=0pt,
+    arc=2mm,
+    left=2mm,
+    right=2mm,
+    top=2mm,
+    bottom=2mm,
+    before upper={\textbf{Author note.}\par\smallskip}
+}
+
+\newtcolorbox{noexam}{
+    enhanced,
+    breakable,
+    colback=noexamgreen,
+    colframe=noexamgreen,
+    boxrule=0pt,
+    arc=2mm,
+    left=2mm,
+    right=2mm,
+    top=2mm,
+    bottom=2mm,
+    before upper={\textbf{No exam / technical intuition.}\par\smallskip}
+}
+
+\title{\textbf{Neuroengineering}\\
+\large Course Notes}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\input{sections/cincotti}
+\input{sections/astolfi}
+
+\end{document}
+
+
