@@ -2006,3 +2006,692 @@ Compared with EEG, EMG usually has larger amplitude and higher signal-to-noise r
     \item Temporal high-pass and low-pass components of the MUAP are linked to its spatial components because the source travels with a specific conduction velocity.
 \end{enumerate}
 
+\section{Instrumentation and Single-Channel Processing}
+
+\subsection{Scope of the Lecture}
+
+This lecture continues the study of electromyography, EMG, focusing on instrumentation and signal processing. The main topics are:
+
+\begin{itemize}[noitemsep]
+    \item electrode types, materials, shapes, and montages;
+    \item electrode size and spatial filtering effects;
+    \item inter-electrode distance, IED;
+    \item selectivity, detection volume, and cross-talk;
+    \item parameters influencing EMG features;
+    \item biosignal amplifiers;
+    \item single-channel surface EMG processing;
+    \item time-domain and frequency-domain EMG features.
+\end{itemize}
+
+\begin{authornote}
+This part of EMG is less about the biological origin of the signal and more about how the signal is recorded and processed. The key idea is that the measured EMG is not only determined by muscle activity, but also by electrode geometry, tissue filtering, amplifier properties, and processing choices.
+\end{authornote}
+
+\subsection{Electrode Types: Surface and Intramuscular Electrodes}
+
+EMG electrodes are made of conductive materials. The two main categories are:
+
+\begin{itemize}[noitemsep]
+    \item surface electrodes;
+    \item intramuscular electrodes.
+\end{itemize}
+
+Surface electrodes are placed on the skin. They are often made of Ag/AgCl and may be used with electrolyte gel. They are non-invasive and easy to apply, which makes them suitable for research, sport science, ergonomics, rehabilitation, and dynamic contractions.
+
+Intramuscular electrodes, such as needle or fine-wire electrodes, are inserted into the muscle. They are mainly used in clinical contexts, especially for diagnosis. Their main advantage is high selectivity: they can detect activity from a small volume of muscle tissue and can allow identification of individual Motor Unit Action Potentials, MUAPs.
+
+\begin{authornote}
+Surface EMG is easier and safer, but less selective. Intramuscular EMG is more precise, but invasive and requires trained operators.
+\end{authornote}
+
+\subsection{Advantages and Disadvantages of Electrode Types}
+
+Surface electrodes have the following advantages:
+
+\begin{itemize}[noitemsep]
+    \item non-invasive;
+    \item easy to apply;
+    \item suitable for static and dynamic contractions;
+    \item useful in many research and applied contexts.
+\end{itemize}
+
+Their main disadvantages are:
+
+\begin{itemize}[noitemsep]
+    \item sensitivity to motion artifacts;
+    \item cross-talk from nearby muscles;
+    \item lower selectivity compared to intramuscular electrodes.
+\end{itemize}
+
+Intramuscular electrodes have the following advantages:
+
+\begin{itemize}[noitemsep]
+    \item high selectivity;
+    \item better identification of individual MUAPs;
+    \item minimal influence of the volume conductor.
+\end{itemize}
+
+Their main disadvantages are:
+
+\begin{itemize}[noitemsep]
+    \item invasive measurement;
+    \item need for trained clinicians;
+    \item need for detailed knowledge of musculoskeletal anatomy;
+    \item limited usability during dynamic contractions.
+\end{itemize}
+
+\subsection{Effect of Surface Electrode Size}
+
+The size of surface electrodes strongly affects the recorded EMG signal. Potentials are averaged under the surface of the electrode. This produces a spatial low-pass filtering effect.
+
+Consequences of larger electrodes include:
+
+\begin{itemize}[noitemsep]
+    \item reduced amplitude of potential distribution peaks;
+    \item attenuation of high spatial frequency components;
+    \item attenuation of high temporal frequency components;
+    \item lower selectivity.
+\end{itemize}
+
+Because the source, namely the Muscle Fiber Action Potential, is moving along the muscle fiber at the conduction velocity, spatial filtering also becomes temporal filtering.
+
+\begin{authornote}
+A larger electrode does not simply record ``more signal''. It averages activity over a larger area. This can reduce noise, but it also blurs the signal and attenuates high-frequency information.
+\end{authornote}
+
+\subsection{Electrode Configuration: Monopolar and Bipolar}
+
+Three electrodes are generally used in EMG acquisition:
+
+\begin{itemize}[noitemsep]
+    \item recording electrode;
+    \item reference electrode;
+    \item ground electrode.
+\end{itemize}
+
+In a monopolar configuration, the recording electrode is placed on the muscle, while the reference electrode is placed on an electrically neutral location, such as a tendon. The ground electrode is usually placed on a bony surface.
+
+In a bipolar configuration, both recording electrodes are placed on the muscle. The signal is obtained as the difference between the two electrode potentials. The ground is again placed on a bony surface.
+
+\begin{authornote}
+The bipolar configuration is the most common for surface EMG because differential recording helps reduce common disturbances and provides a more local measurement.
+\end{authornote}
+
+\subsection{Bipolar Electrode Placement}
+
+In bipolar surface EMG, electrodes should not be placed across the innervation zone. If the two electrodes straddle the innervation zone, they may detect similar potentials propagating in opposite directions, producing cancellation or reduced amplitude.
+
+The main placement rules are:
+
+\begin{itemize}[noitemsep]
+    \item place the two electrodes on the same side of the innervation zone;
+    \item choose the inter-electrode distance properly;
+    \item avoid salt bridges between electrodes.
+\end{itemize}
+
+According to standard recommendations, in a bipolar recording electrodes should be placed between the innervation zone and the distal tendon, oriented parallel to the muscle fibers.
+
+\begin{authornote}
+A salt bridge occurs when conductive gel connects the two electrodes electrically. This can make the two electrodes see almost the same potential, reducing the differential signal.
+\end{authornote}
+
+\subsection{Inter-Electrode Distance}
+
+The Inter-Electrode Distance, IED, is the distance between the two electrodes in a bipolar configuration.
+
+IED affects both amplitude and frequency content of the EMG signal.
+
+Increasing IED generally produces:
+
+\begin{itemize}[noitemsep]
+    \item larger detection volume;
+    \item increased overall amplitude;
+    \item lower selectivity;
+    \item higher risk of cross-talk;
+    \item changes in frequency content due to spatial filtering.
+\end{itemize}
+
+A short IED improves selectivity because the recording is more sensitive to muscle fibers close to the electrodes and less sensitive to distant sources.
+
+\begin{authornote}
+IED is a trade-off. A larger IED gives a stronger signal, but it is less local. A smaller IED is more selective, but the signal may be smaller.
+\end{authornote}
+
+\subsection{Selectivity and Detection Volume}
+
+Selectivity is the ability to record meaningful muscle activity from a local volume of tissue, above the noise level.
+
+The detection volume is the volume of tissue from which the electrodes can detect signals. It depends on electrode geometry, inter-electrode distance, tissue properties, and source depth.
+
+If the IED is kept short, the system better matches the spatial structure of nearby muscle fiber action potentials. Contributions from more distant fibers are attenuated.
+
+An increase in IED, for example from 2 cm to 4 cm, can increase amplitude but decrease frequency content and selectivity.
+
+\subsection{IED as a Spatial and Temporal Filter}
+
+Bipolar electrodes act as spatial filters. They allow some spatial frequencies in the EMG signal to pass while attenuating others.
+
+The amplitude of the MUAP is reduced if the IED does not match the spatial distribution of the MUAP.
+
+Because the source travels along the muscle fiber, spatial filtering also becomes temporal filtering. As IED increases, the time required for the MFAP to travel from one electrode to the other increases. This can make the differential waveform longer in duration and greater in amplitude.
+
+\begin{authornote}
+This is an important conceptual point: electrode geometry modifies the signal before any digital processing. The electrode pair itself is already a filter.
+\end{authornote}
+
+\subsection{Overall Spatial Filtering: Electrode Size and IED}
+
+The overall filtering effect depends on both electrode size and inter-electrode distance.
+
+Electrode size introduces a low-pass filtering effect, attenuating high-frequency components in both the spatial and temporal spectra of surface EMG.
+
+The center-to-center IED introduces a band-pass spatial filtering effect. The final recorded signal is therefore shaped by the combination of:
+
+\[
+\text{electrode size low-pass effect}
++
+\text{IED band-pass effect}.
+\]
+
+This applies to monopolar recordings, bipolar recordings, and grids of electrodes.
+
+\subsection{Cross-Talk}
+
+Cross-talk is the contamination of the signal recorded over a target muscle by activity generated by another, usually nearby, muscle.
+
+Cross-talk is mainly a problem in surface EMG. It occurs when the detection points are at comparable distances from sources in different muscles.
+
+It is caused by:
+
+\begin{itemize}[noitemsep]
+    \item volume conduction properties;
+    \item source geometry;
+    \item electrode configuration;
+    \item insufficient selectivity.
+\end{itemize}
+
+Cross-talk is one of the most important sources of error in interpreting surface EMG signals.
+
+\begin{authornote}
+Cross-talk is dangerous because it can make us believe that a muscle is active when the detected signal actually comes from another nearby muscle.
+\end{authornote}
+
+\subsection{Parameters Influencing EMG Features}
+
+EMG features depend on anatomical, physical, and detection-system parameters.
+
+Important factors include:
+
+\begin{itemize}[noitemsep]
+    \item thickness of the subcutaneous tissue layer;
+    \item depth of the sources inside the muscle;
+    \item distance between source and electrode;
+    \item tilt of the bipolar detection system relative to muscle fibers;
+    \item length of muscle fibers;
+    \item location between innervation zone and tendon;
+    \item electrode montage;
+    \item electrode size;
+    \item inter-electrode distance;
+    \item cross-talk from nearby muscles.
+\end{itemize}
+
+The subcutaneous tissue layer acts as a spatial and temporal low-pass filter. As its thickness increases, EMG amplitude decreases and bandwidth is reduced.
+
+\begin{authornote}
+This explains why comparing raw EMG amplitudes between different subjects is difficult. A subject with more subcutaneous tissue may show lower EMG amplitude even with similar muscle activation.
+\end{authornote}
+
+\subsection{Biosignal Amplifiers}
+
+Surface EMG during maximal isometric contractions can reach amplitudes of about:
+
+\[
+5\,\text{mV}.
+\]
+
+Intramuscular EMG is less attenuated by tissue filtering and can reach about:
+
+\[
+10\,\text{mV}.
+\]
+
+Important amplifier specifications include:
+
+\begin{itemize}[noitemsep]
+    \item differential gain;
+    \item input impedance;
+    \item Common-Mode Rejection Ratio, CMRR;
+    \item frequency response relative to the acquired signal.
+\end{itemize}
+
+Differential amplification helps subtract common-mode noise, such as power-line interference, while amplifying the biological difference signal.
+
+Surface EMG is typically hardware band-pass filtered between:
+
+\[
+10\,\text{Hz}
+\quad \text{and} \quad
+500\,\text{Hz}.
+\]
+
+The high-pass cutoff removes low-frequency artifacts associated with electrode and cable movement. The low-pass cutoff reduces high-frequency noise from the environment.
+
+\begin{authornote}
+The amplifier does not only amplify. It also shapes the signal bandwidth. Therefore, amplifier settings must be compatible with the physiological frequency content of EMG and with the sampling rate.
+\end{authornote}
+
+\subsection{Single-Channel Surface EMG Techniques}
+
+Single-channel EMG techniques extract parameters or features from one EMG signal, typically obtained from one pair of surface electrodes.
+
+They provide a global description of the electrical potential observed at the recording site.
+
+These techniques can be used to quantify changes in muscle activation or to classify conditions. They can also be applied to multiple electrodes to estimate the spatial distribution of features on the skin.
+
+\begin{authornote}
+Single-channel techniques are useful but indirect. They do not provide detailed information about individual motor units; they summarize the global activity recorded by the electrode pair.
+\end{authornote}
+
+\subsection{Time-Domain and Frequency-Domain Features}
+
+The main time-domain features are:
+
+\begin{itemize}[noitemsep]
+    \item Root Mean Square, RMS;
+    \item Average Rectified Value, ARV;
+    \item Linear Envelope, LE;
+    \item EMG onset.
+\end{itemize}
+
+The main frequency-domain features are:
+
+\begin{itemize}[noitemsep]
+    \item Mean Frequency, MNF;
+    \item Median Frequency, MDF.
+\end{itemize}
+
+In the time domain, the dominant change in single-channel surface EMG is the modulation of signal amplitude, estimated by RMS or ARV.
+
+As muscle effort increases, EMG amplitude generally increases.
+
+In the frequency domain, during sustained high-effort contractions, the dominant phenomenon is compression of the EMG spectrum toward lower frequencies.
+
+\subsection{Amplitude Estimation Pipeline}
+
+Amplitude estimators are usually implemented digitally as a cascade of processing stages:
+
+\begin{enumerate}[noitemsep]
+    \item noise and interference attenuation;
+    \item whitening;
+    \item demodulation;
+    \item smoothing;
+    \item relinearization, if needed.
+\end{enumerate}
+
+The goal is to estimate the time-varying amplitude or standard deviation of the EMG signal.
+
+\subsection{Noise and Interference Attenuation}
+
+The first processing stage aims to reduce:
+
+\begin{itemize}[noitemsep]
+    \item additive noise;
+    \item artifacts;
+    \item power-line interference.
+\end{itemize}
+
+This can be achieved through:
+
+\begin{itemize}[noitemsep]
+    \item proper skin preparation;
+    \item correct electrode setup;
+    \item analog filtering in the amplifier;
+    \item digital filtering during post-processing.
+\end{itemize}
+
+\subsection{Whitening}
+
+Whitening aims to make EMG samples statistically uncorrelated.
+
+Neighboring EMG samples are correlated because EMG has limited bandwidth. This limited bandwidth reflects both the biological generation of the signal and the low-pass filtering effects of tissues.
+
+Whitening performs temporal decorrelation.
+
+\begin{authornote}
+Whitening is not always emphasized in simple EMG pipelines, but it is conceptually important because correlated samples do not provide fully independent information.
+\end{authornote}
+
+\subsection{Demodulation and Relinearization}
+
+Demodulation is used to estimate the EMG amplitude from the samples.
+
+The demodulation step rectifies the whitened EMG and then raises it to a power:
+
+\[
+d = 1
+\quad \text{for ARV processing},
+\]
+
+\[
+d = 2
+\quad \text{for RMS processing}.
+\]
+
+For ARV, rectification uses the absolute value and no relinearization is required.
+
+For RMS, rectification uses the square of the samples, and relinearization requires taking the square root.
+
+\subsection{Smoothing}
+
+Smoothing reduces random fluctuations in the EMG amplitude estimate.
+
+For ARV and RMS, smoothing can be performed using time averaging over a sliding window, typically:
+
+\[
+100-250\,\text{ms}.
+\]
+
+This assumes quasi-stationarity of the EMG signal within the window.
+
+For the Linear Envelope, smoothing is usually performed with a linear low-pass filter, typically with cutoff frequency:
+
+\[
+1-6\,\text{Hz}.
+\]
+
+Lower cutoff frequencies are suitable for constant or slowly varying muscle effort. Higher cutoff frequencies are suitable when rapid changes in muscle effort must be tracked.
+
+\subsection{ARV, RMS, and Linear Envelope}
+
+The Average Rectified Value is:
+
+\[
+ARV =
+\frac{1}{N}
+\sum_{i=1}^{N}
+|EMG(i)|.
+\]
+
+The Root Mean Square is:
+
+\[
+RMS =
+\sqrt{
+\frac{1}{N}
+\sum_{i=1}^{N}
+EMG(i)^2
+}.
+\]
+
+The Linear Envelope is obtained by full-wave rectifying the EMG and then applying a low-pass filter.
+
+\begin{authornote}
+ARV and RMS give one value per analysis window. The Linear Envelope gives a continuous smoothed amplitude profile over time.
+\end{authornote}
+
+\subsection{Amplitude Normalization: \%MVC}
+
+Raw EMG amplitude is affected by several confounding factors, including:
+
+\begin{itemize}[noitemsep]
+    \item subcutaneous tissue thickness;
+    \item fiber inclination relative to the detection system;
+    \item inter-electrode distance;
+    \item electrode placement;
+    \item muscle size and anatomy.
+\end{itemize}
+
+For this reason, EMG amplitude is often normalized. The most common procedure is normalization to the Maximum Voluntary Contraction, MVC.
+
+Normalized EMG is expressed as:
+
+\[
+\%MVC =
+\frac{EMG_{\text{task}}}{EMG_{\text{MVC}}}
+\cdot 100.
+\]
+
+Normalization facilitates comparisons between:
+
+\begin{itemize}[noitemsep]
+    \item muscles;
+    \item recording sessions;
+    \item subjects;
+    \item experimental conditions.
+\end{itemize}
+
+\subsection{EMG Onset Detection}
+
+EMG onset is the time at which muscle activity begins.
+
+A robust method for onset detection is the double-threshold algorithm:
+
+\begin{enumerate}[noitemsep]
+    \item the amplitude of the envelope must exceed an amplitude threshold $A_c$;
+    \item the envelope must remain above $A_c$ for a duration longer than a time threshold $t_c$.
+\end{enumerate}
+
+The amplitude threshold $A_c$ is usually determined as a multiple of the resting RMS.
+
+If the envelope briefly crosses the amplitude threshold but drops below it before the time criterion is satisfied, no onset is detected. This reduces false positives caused by short bursts of activity.
+
+\begin{authornote}
+The double-threshold method is useful because a simple amplitude threshold alone is too sensitive to short spikes or noise bursts.
+\end{authornote}
+
+\subsection{Power Spectral Density of EMG}
+
+The Power Spectral Density, PSD, describes how EMG power is distributed over frequency.
+
+PSD functions from different muscle groups share a similar basic shape, related to the shape of the underlying MUAPs. The main difference between muscle groups is signal bandwidth.
+
+Bandwidth depends on physiological properties such as:
+
+\begin{itemize}[noitemsep]
+    \item percentage of MVC over which motor units are recruited;
+    \item maximum firing rates;
+    \item muscle fiber lengths.
+\end{itemize}
+
+\subsection{Spectral Compression}
+
+During sustained voluntary contractions, especially fatiguing contractions, the EMG spectrum progressively shifts toward lower frequencies.
+
+This phenomenon is called spectral compression or frequency scaling.
+
+The shape of the spectrum remains approximately similar, but the frequency axis is compressed.
+
+Spectral compression is related to changes in MUAP shape. These changes can be caused by:
+
+\begin{itemize}[noitemsep]
+    \item decrease in muscle fiber conduction velocity;
+    \item changes in intracellular pH;
+    \item fatigue-related physiological modifications.
+\end{itemize}
+
+\begin{authornote}
+Fatigue tends to slow down conduction velocity. A slower propagating action potential becomes longer in time, so its spectrum shifts toward lower frequencies.
+\end{authornote}
+
+\subsection{Mean Frequency and Median Frequency}
+
+Mean Frequency, MNF, and Median Frequency, MDF, are traditional descriptors of EMG spectral content.
+
+They require quasi-stationary conditions.
+
+The Mean Frequency is the power-weighted average frequency:
+
+\[
+MNF =
+\frac{
+\int_{0}^{f_s/2}
+f P(f)\,df
+}{
+\int_{0}^{f_s/2}
+P(f)\,df
+}.
+\]
+
+The Median Frequency is the frequency that divides the total spectral power into two equal halves:
+
+\[
+\int_{0}^{MDF}
+P(f)\,df
+=
+\frac{1}{2}
+\int_{0}^{f_s/2}
+P(f)\,df.
+\]
+
+During spectral compression, both MNF and MDF decrease.
+
+\begin{authornote}
+MNF is like the average frequency of the spectrum. MDF is the frequency that splits the total power into two equal parts.
+\end{authornote}
+
+\subsection{Epoch Length and Overlap}
+
+In stationary conditions, longer signal epochs reduce the variance of spectral descriptor estimates.
+
+In non-stationary conditions, longer epochs increase non-stationarity bias. Therefore, a trade-off is needed.
+
+Typical epoch lengths for EMG spectral analysis are:
+
+\[
+250-500\,\text{ms}.
+\]
+
+Epoch overlapping increases the number of experimental points without increasing their scatter, but it also increases statistical dependence between points.
+
+\begin{authornote}
+Overlapping epochs make plots smoother and provide more points, but those points are not independent observations.
+\end{authornote}
+
+\subsection{Core Exam Takeaways}
+
+\begin{enumerate}
+    \item Surface electrodes are non-invasive and easy to apply, but are sensitive to motion artifacts and cross-talk.
+    \item Intramuscular electrodes are invasive but provide higher selectivity and better MUAP identification.
+    \item Larger surface electrodes produce spatial low-pass filtering and reduce high-frequency content.
+    \item Bipolar EMG uses two electrodes over the muscle and records their differential signal.
+    \item Bipolar electrodes should not be placed across the innervation zone.
+    \item Inter-electrode distance affects amplitude, selectivity, detection volume, and frequency content.
+    \item Smaller IED improves selectivity and reduces cross-talk.
+    \item Cross-talk is contamination from nearby muscles and is a major error source in surface EMG.
+    \item Subcutaneous tissue acts as a low-pass filter, reducing amplitude and bandwidth.
+    \item Surface EMG is typically hardware band-pass filtered between 10 and 500 Hz.
+    \item Single-channel EMG provides a global description of muscle electrical activity.
+    \item Time-domain amplitude features include RMS, ARV, LE, and onset.
+    \item Frequency-domain features include MNF and MDF.
+    \item The amplitude estimation pipeline includes noise attenuation, whitening, demodulation, smoothing, and relinearization.
+    \item MVC normalization allows comparison across subjects, muscles, and sessions.
+    \item The double-threshold algorithm improves EMG onset detection.
+    \item Fatigue causes spectral compression toward lower frequencies.
+    \item MNF and MDF decrease during spectral compression.
+    \item In non-stationary conditions, EMG spectral analysis usually uses short quasi-stationary epochs.
+\end{enumerate}
+
+\subsection{True Statements}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Surface electrodes are non-invasive and easy to apply, but they are susceptible to motion artifacts and cross-talk.
+    
+    \item Intramuscular electrodes, such as fine-wire or needle electrodes, are invasive but offer high selectivity and allow the identification of individual MUAPs.
+    
+    \item Larger surface electrodes average the potential over a wider area.
+    
+   \item Larger surface electrodes act as spatial low-pass filters.
+    
+    \item Larger surface electrodes reduce signal amplitude and high-frequency content.
+    
+    \item A monopolar EMG recording uses one electrode on the muscle and a reference electrode on an electrically neutral location, such as a tendon or bone.
+    
+    \item A bipolar EMG recording uses two electrodes placed over the muscle belly and records the differential signal between them.
+    
+    \item Bipolar recording is the most common configuration for surface EMG.
+    
+    \item In a bipolar recording, electrodes should be placed between the innervation zone and the distal tendon.
+    
+    \item In a bipolar recording, electrodes should be oriented parallel to the muscle fibers.
+    
+    \item Bipolar surface electrodes should not be placed across the innervation zone.
+    
+    \item Increasing the inter-electrode distance generally increases detection volume and signal amplitude.
+    
+    \item Increasing the inter-electrode distance generally decreases selectivity.
+    
+    \item A smaller inter-electrode distance improves selectivity.
+    
+    \item A smaller inter-electrode distance reduces the effects of cross-talk.
+    
+    \item Cross-talk is the contamination of the signal from a target muscle by the activity of a nearby muscle.
+    
+    \item Cross-talk is a major source of error in surface EMG.
+    
+    \item The thickness of the subcutaneous fat layer significantly affects surface EMG.
+    
+    \item The subcutaneous layer acts as a low-pass filter that reduces the amplitude and bandwidth of the signal.
+    
+    \item EMG amplifiers typically require hardware band-pass filtering.
+    
+    \item Surface EMG activity is typically hardware band-passed between 10 Hz and 500 Hz.
+    
+    \item High-pass filtering helps remove low-frequency artifacts associated with electrode and cable movement.
+    
+    \item Low-pass filtering helps reduce high-frequency environmental noise picked up by the electrodes.
+    
+    \item Single-channel EMG processing techniques provide a global description of the muscle electrical activity.
+    
+    \item Single-channel surface EMG amplitude measures correlate with the strength of muscular contraction.
+    
+    \item Single-channel surface EMG does not provide direct information about individual motor units.
+    
+    \item The pipeline for estimating EMG amplitude typically includes noise rejection, whitening, demodulation, smoothing, and possible relinearization.
+    
+    \item As muscle effort increases, the amplitude of the surface EMG signal increases.
+    
+    \item The Root Mean Square, RMS, estimates EMG amplitude by taking the square root of the average squared EMG samples over a time window.
+    
+    \item The Average Rectified Value, ARV, estimates EMG amplitude by averaging the absolute value of EMG samples over a time window.
+    
+    \item The Linear Envelope of EMG is commonly obtained by full-wave rectification followed by low-pass filtering.
+    
+    \item The typical cutoff frequency for the Linear Envelope is between 1 Hz and 6 Hz.
+    
+    \item Lower cutoff frequencies are appropriate for constant or slowly varying muscle effort.
+    
+    \item Higher cutoff frequencies are appropriate for studies involving rapid changes in muscle effort.
+    
+    \item EMG amplitude is affected by confounding factors such as subcutaneous layer thickness, fiber inclination, and inter-electrode distance.
+    
+    \item Normalization of EMG amplitude facilitates comparisons between muscles, sessions, and subjects.
+    
+    \item The most frequently used normalization procedure is based on Maximum Voluntary Contraction, MVC.
+    
+    \item The double-threshold algorithm detects EMG onset by requiring the envelope to exceed an amplitude threshold for a minimum duration.
+    
+    \item In the double-threshold algorithm, if the amplitude threshold is crossed but the signal falls below threshold before the time criterion is met, onset is not triggered.
+    
+    \item During sustained fatiguing contractions, the EMG power spectrum compresses toward lower frequencies.
+    
+    \item Spectral compression is primarily related to changes in MUAP shape.
+    
+    \item A decrease in muscle fiber conduction velocity contributes to spectral compression.
+    
+    \item Mean Frequency, MNF, and Median Frequency, MDF, are common spectral descriptors used to quantify spectral compression.
+    
+    \item During spectral compression, MNF and MDF decrease.
+    
+    \item MNF is the average frequency of the power spectrum weighted by power.
+    
+    \item MDF is the frequency that divides the total spectral power into two equal halves.
+    
+    \item In stationary conditions, longer signal epochs provide more accurate spectral estimates.
+    
+    \item In non-stationary conditions, a trade-off is required to avoid non-stationarity bias.
+    
+    \item Typical epoch lengths for EMG spectral analysis in non-stationary conditions are 250--500 ms.
+    
+    \item Epoch overlap increases the number of experimental points but also increases their statistical dependence.
+\end{enumerate}
+
